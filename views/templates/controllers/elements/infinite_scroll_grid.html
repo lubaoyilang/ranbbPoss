@@ -1,0 +1,40 @@
+<div class="row page-title">
+    <div class="col-xs-12">
+        <h3>Infinite Scroll Grid</h3>
+    </div>
+</div>
+<div class="row" infinite-scroll="project.scroll()">
+    <div class="col-sm-3" ng-repeat="project in projects">
+        <div class="block-content">
+            <div class="content project-list nopadding">
+                <div class="project-title">
+                    <i class="flaticon-{{project.icon}} flaticon"></i>
+                    <h4>{{project.name}}</h4>
+                </div>
+                <div class="project-info">
+                    " Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. "
+                </div>
+                <div class="project-users">
+                    <ul class="users-list">
+                        <li><i class="flaticon-business57 flaticon"></i>
+                        </li>
+                        <li><i class="flaticon-business57 flaticon"></i>
+                        </li>
+                        <li><i class="flaticon-business57 flaticon"></i>
+                        </li>
+                        <li><i class="flaticon-business57 flaticon"></i>
+                        </li>
+                    </ul>
+                </div>
+                <div class="progress">
+                    <div class="progress-bar progress-bar-{{project.progress.status}} progress-bar-striped" role="progressbar" aria-valuenow="{{project.progress.percentage}}" aria-valuemin="0" aria-valuemax="100" style="width: {{project.progress.percentage}}%">
+                        <span>{{project.progress.percentage}}% Complete</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="text-center color-white" ng-show="project.loading">
+    <h2><i class="fa fa-refresh fa-spin"></i></h2>
+</div>

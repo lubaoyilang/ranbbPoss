@@ -1,0 +1,132 @@
+/* Body Style */
+body.default {
+	background-color: #60646D;
+}
+
+/* Navbar */
+.navbar-default > div > .main-navbar {
+    background-color: #FFF;
+}
+
+.sub-navbar-collapse {
+	background-color: #1BBC9B;
+}
+
+
+.navbar-default .navbar-nav>.active>a:after {
+	border-bottom-color: #60646D;
+}
+
+.expand-dropdown .expand-dropdown-menu.sub-nav .divider-vertical {
+    border-right: 0px solid #ffffff;
+    border-left: 1px solid rgba(255,255,255, 0.2);
+}
+
+.navbar-default .navbar-nav.sub-nav  > li > a, .navbar-default .navbar-nav.sub-nav  > li > a:hover, .navbar-default .navbar-nav.sub-nav  > li > a:focus,.navbar-default  .navbar-nav.sub-nav  > li.active > a {
+	color: #FFF;
+}
+
+.navbar-nav.sub-nav  > li > a, .navbar-nav.sub-nav  > li > a:hover, .navbar-nav.sub-nav  > li > a:focus, .navbar-nav.sub-nav  > li.active > a {
+	color: #FFF;
+}
+
+
+/* Notification */
+.dropdown.icon.notification .dropdown-menu:after {
+	border-bottom-color: #E01931;
+}
+
+.dropdown.icon.notification .dropdown-title-bar {
+	color: #FFF;
+	background-color: #E01931;
+}
+
+.dropdown.icon.notification .dropdown-title-bar .badge {
+	background-color: rgba(255,255,255, 0.9);
+	color: #E01931;
+}
+
+.dropdown ul.notification-list > li {
+	background-color: #FFFFF7;
+}
+
+.dropdown ul.notification-list > li.clear {
+	background-color: #FFFFE0;
+
+}
+
+
+.dropdown ul.notification-list > li.clear a {
+	color: #333;
+}
+
+.dropdown ul.notification-list > li.clear:hover {
+	background-color: rgba(224, 25, 49, 0.5);
+	color: #333;
+}
+
+.dropdown ul.notification-list > li:hover {
+	background-color: rgba(224, 25, 49, 0.2);
+}
+
+
+.dropdown ul.notification-list li .badge {
+	color: #E01931;
+	background-color: rgba(224, 25, 49, 0.1);
+}
+
+.dropdown ul.notification-list li.danger .badge {
+	color: #FFF;
+	background-color: #E01931;
+}
+
+.dropdown ul.notification-list li.warning .badge {
+	color: #FFF;
+	background-color: #F9BF3B;
+}
+
+/* Expand Dropdown */
+.navbar-default .navbar-nav>.active.expand-dropdown>a:after, .navbar-default .navbar-nav>.open.expand-dropdown.blue>a:after {
+	border-bottom-color: #D1D5D8;
+}
+
+.navbar-default .navbar-nav>.active.expand-dropdown.blue>a:after, .navbar-default .navbar-nav>.open.expand-dropdown.blue>a:after {
+	border-bottom-color: #3498DB;
+}
+
+.navbar-default .navbar-nav>.active.expand-dropdown.green>a:after, .navbar-default .navbar-nav>.open.expand-dropdown.green>a:after {
+	border-bottom-color: #1ABC9C;
+}
+
+.expand-dropdown .expand-dropdown-menu {
+	background-color:  #D1D5D8;
+}
+.expand-dropdown.blue .expand-dropdown-menu {
+	background-color:  #3498DB;
+}
+.expand-dropdown.green .expand-dropdown-menu {
+	background-color:  #1ABC9C;
+}
+
+
+/*
+    Block
+*/
+
+.block-content {
+	background-color: #FFF;
+}
+
+.block-content.tranparent {
+	background-color: rgba(255,255,255.0.25);
+}
+
+.block-content.tranparent .content {
+}
+
+/* Dashboard */
+
+.block-content.create-task .input-group .input-group-addon {
+	background-color: #1ABC9C;
+    color: #FFF;
+}

@@ -1,0 +1,87 @@
+<script type="text/ng-template" id="modal_example.html">
+    <div class="modal-header">
+        <h3 class="modal-title">编辑店铺信息</h3>
+    </div>
+    <div class="modal-body">
+        <form class="form-vertical">
+            <div class="content">
+                <div class="form-group">
+                    <label for="shopName">商家名称</label>
+                    <input type="text" class="form-control" id="shopName" placeholder="商家名称">
+                </div>
+                <div class="form-group">
+                    <label for="shopPhone">商家手机号</label>
+                    <input type="phone" class="form-control" id="shopPhone" placeholder="商家手机号">
+                </div>
+                <div class="form-group">
+                    <label for="shopEmail">商家邮箱</label>
+                    <input type="email" class="form-control" id="shopEmail" placeholder="商家邮箱">
+                </div>
+                <div class="form-group">
+                    <label for="shopTaobaoAccount">商家淘宝账号</label>
+                    <input type="text" class="form-control" id="shopTaobaoAccount" placeholder="商家淘宝账号">
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" ng-click="ok()">提交</button>
+        <button class="btn btn-warning" ng-click="cancel()">取消</button>
+    </div>
+</script>
+
+
+<script type="text/ng-template" id="modal_add_goods.html">
+    <div class="modal-header">
+        <h3 class="modal-title">编辑店铺信息</h3>
+    </div>
+    <div class="modal-body">
+        <form class="form-vertical">
+            <div class="content">
+                <div class="form-group">
+                    <label for="shopName">商品名称</label>
+                    <input type="text" class="form-control" id="goodsName" placeholder="商家名称">
+                </div>
+                <div class="form-group">
+                    <label for="shopPhone">商品价格</label>
+                    <input type="phone" class="form-control" id="goodsPrice" placeholder="商家手机号">
+                </div>
+                <div class="form-group">
+                    <label for="shopEmail">刷单买家等级需求</label>
+                    <input type="email" class="form-control" id="requireLevel" placeholder="商家邮箱">
+                </div>
+                <div class="form-group">
+                    <label for="shopTaobaoAccount">佣金</label>
+                    <input type="text" class="form-control" id="brokerAge" placeholder="商家淘宝账号">
+                </div>
+                <div class="form-group">
+                    <label for="shopTaobaoAccount">数量</label>
+                    <input type="text" class="form-control" id="goodsQuantity" placeholder="商家淘宝账号">
+                </div>
+                <div class="form-group">
+                    <label for="shopTaobaoAccount">店家要求</label>
+                    <textarea type="text" class="form-control" id="shopRequire" placeholder="商家淘宝账号"></textarea>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" ng-click="ok()">提交</button>
+        <button class="btn btn-warning" ng-click="cancel()">取消</button>
+    </div>
+</script>
+
+
+
+<script type="text/ng-template" id="create_project_modal.html">
+    <div class="modal-header">
+        <h3 class="modal-title">Create Project</h3>
+    </div>
+    <div class="modal-body">
+        
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" ng-click="ok()">OK</button>
+        <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+    </div>
+</script>

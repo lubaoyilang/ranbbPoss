@@ -1,0 +1,31 @@
+<div class="block-content" ng-hide="login.mode.indexOf('success') > -1">
+    <div class="login-header header text-center" ng-class="{'header-danger': login.mode == 'errors', 'header-success': login.mode == 'success'}">{{login.message}}</div>
+    <div class="progress hide" ng-class="{'hide': login.mode != 'loading'}">
+        <div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%" >
+            <span class="sr-only">100% Complete (success)</span>
+        </div>
+    </div>
+    <form id="login-form" ng-submit="login.login(login.user)">
+        <div class="content">
+        <div class="control margin-bottom" ng-class="{'has-error': login.errors.username}">
+            <input type="text" class="form-control" ng-model="login.user.username" placeHolder="用户手机号"  ng-change="login.change()" />
+        </div>
+        <div class="control" ng-class="{'has-error': login.errors.password}">
+            <input type="password" class="form-control" ng-model="login.user.password" placeHolder="用户密码" ng-change="login.change()" />
+        </div>
+        </div>
+        <div class="login-button text-center">
+            <input type="submit" class="btn btn-default full-width" ng-class="{'btn-primary': !(login.mode.indexOf('errors') > -1 || login.mode.indexOf('success') > -1)  }" value="登陆"></button>
+        </div>
+    </form>
+</div>
+<div class="button-box"  ng-show="false">
+   <span class="text-left"><a ui-sref="sessions.register" class="btn btn-default register_button button"><i class="fa fa-cube"></i><span>Register</span></a></span>
+   <span class="pull-right"><a class="btn btn-default forgot_button button"><span>Forgot Password</span><i class="fa fa-key"></i></a></span>
+   <div class="clear-both"></div>
+</div>
+
+<div ng-show="login.mode.indexOf('success') > -1" class="text-center">
+    <h3 class="color-success">登陆成功,请稍后...</h3>
+    <h2 class="color-success"><i class="fa fa-spinner fa-spin"></i></h2>
+</div>

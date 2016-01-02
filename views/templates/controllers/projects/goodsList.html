@@ -1,0 +1,46 @@
+<div class="row page-title">
+    <div class="col-xs-6">
+        <h2>商品列表</h2>
+    </div>
+    <div class="col-xs-6">
+        <div class="pull-right">
+            <button type="button" ui-sref="main.projects.create" class="btn btn-info btn-lg"><i class="fa fa-pencil-square-o"></i> 添加商品</button>
+        </div>
+    </div>
+</div>
+<div class="row" infinite-scroll="project.scroll()">
+    <div class="col-sm-3" ng-repeat="project in projects">
+        <div class="block-content" >
+            <div class="content project-list nopadding" >
+                <div class="project-title">
+                    <img src="http://img2.imgtn.bdimg.com/it/u=2596377144,2633147124&fm=21&gp=0.jpg" style="height: 40px">
+                    <a ui-sref="main.elements.infinite_scroll_table"><h4>{{project.name}}</h4></a>
+                    <a ng-click="modal.open('lg','modal-info')"  class="btn"><h6>编辑</h6></a>
+                </div>
+                <div class="project-info">
+                    " Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. "
+                </div>
+                <table class="table" style="margin-bottom: 0px">
+                    <tr>
+                        <th class="text-center">
+                            <span>佣金</span>
+                            <span>100</span>
+                        </th>
+                        <th class="text-center">
+                            <span>价格</span>
+                            <span>20</span>
+                        </th>
+                    </tr>
+                </table>
+                <div class="progress">
+                    <div class="progress-bar progress-bar-{{project.progress.status}} progress-bar-striped" role="progressbar" aria-valuenow="{{project.progress.percentage}}" aria-valuemin="0" aria-valuemax="100" style="width: {{project.progress.percentage}}%">
+                        <span>{{project.progress.percentage}}% Complete</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="text-center color-white" ng-show="project.loading">
+    <h2><i class="fa fa-refresh fa-spin"></i></h2>
+</div>

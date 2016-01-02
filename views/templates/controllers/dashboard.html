@@ -1,0 +1,100 @@
+<div class="content-container container-fluid">
+    <div class="row">
+        <div class="col-sm-3">
+            <ui-select ng-model="project.selected" theme="selectize" ng-disabled="disabled" class="project-select">
+                <ui-select-match placeholder="Select Projects">
+                    <div class="project-row" style="background-color:{{$select.selected.color}};"><i class="flaticon-{{$select.selected.icon}} flaticon icon"></i><span class="title">{{$select.selected.name}}</span>
+                    </div>
+                </ui-select-match>
+                <ui-select-choices repeat="project in projects | filter: $select.search">
+                    <div class="project-row" style="color:{{project.color}};"> <i class="icon flaticon-{{project.icon}} flaticon"></i>
+                        <span class="title" ng-bind-html="project.name | highlight: $select.search"></span>
+                    </div>
+                </ui-select-choices>
+            </ui-select>
+        </div>
+        <div class="col-sm-9">
+            <div class="block-content create-task">
+                <div class="content nopadding">
+                    <div class="input-group">
+                        <span class="input-group-addon" style="background-color:{{project.selected.color}}"><i class="fa fa-pencil-square-o fa-fw"></i></span>
+                        <input type="password" placeHolder="Create Task . . . . ">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3">
+            <div class="block-content">
+                <div class="header">
+                    <span class="title">Uncomplete Task</span>
+                </div>
+                <div class="content">
+                    <canvas id="pie" class="chart chart-pie" data="pie_data" labels="pie_labels" legend="true"></canvas>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-9">
+            <div class="block-content todo-list">
+                <div class="header">
+                    <div class="title"><i class="fa fa-tasks"></i> Recent Tasks ( 12 )</div>
+                </div>
+                <div class="content nopadding">
+                    <div class="task-list">
+                            <div class="row" ng-repeat="item in todo.list track by $index">
+                                <div class="col-md-8  col-xs-12">
+                                    <input type="checkbox" name="checkboxG{{$index}}" id="checkboxG{{$index}}" class="css-checkbox">
+                                    <label for="checkboxG{{$index}}" class="css-label"></label> {{item.title}}</div>
+                                <div class="col-md-1  col-xs-4 text-center">
+                                    <div class="alert alert-success">75%</div>
+                                </div>
+                                <div class="col-md-1 col-xs-4 text-center">
+                                    <span class="label label-danger" ng-show="item.status == 'danger'">Deadline</span>
+                                    <span class="label label-warning" ng-show="item.status == 'warning'">Coming</span>
+                                </div>
+                                <div class="col-md-2 col-xs-4 text-center">{{item.date | date:'mediumDate'}}</div>
+                            </div>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row page-title">
+        <div class="col-xs-12">
+            <h3>Projects Progress</h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3" ng-repeat="project in projects">
+            <div class="block-content">
+                <div class="content project-list nopadding">
+                    <div class="project-title">
+                        <i class="flaticon-{{project.icon}} flaticon"></i>
+                        <h4>{{project.name}}</h4>
+                    </div>
+                    <div class="project-info">
+                        " Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. "
+                    </div>
+                    <div class="project-users">
+                        <ul class="users-list">
+                            <li><i class="flaticon-business57 flaticon"></i>
+                            </li>
+                            <li><i class="flaticon-business57 flaticon"></i>
+                            </li>
+                            <li><i class="flaticon-business57 flaticon"></i>
+                            </li>
+                            <li><i class="flaticon-business57 flaticon"></i>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-{{project.progress.status}} progress-bar-striped" role="progressbar" aria-valuenow="{{project.progress.percentage}}" aria-valuemin="0" aria-valuemax="100" style="width: {{project.progress.percentage}}%">
+                            <span>{{project.progress.percentage}}% Complete</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

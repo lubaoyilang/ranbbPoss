@@ -1,0 +1,83 @@
+<div class="row page-title">
+    <div class="col-xs-12">
+        <h3>General Table</h3>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="block-content">
+            <div class="header">
+                <span class="title">Table Style</span>
+                <div class="pull-right btn-group">
+                    <div class="btn-group" data-toggle="buttons">
+                        <label class="btn btn-primary" ng-repeat="item in generalTable.classOptions">
+                            <input type="checkbox" checklist-model="generalTable.classSelected" checklist-value="item"> <i class="fa" ng-class="{'fa-circle-o': generalTable.classSelected.indexOf('{{item}}') <= -1, 'fa-check-circle': generalTable.classSelected.indexOf('{{item}}') > -1}"></i> {{item}}
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="content nopadding">
+                <table class="table" ng-class="{'table-bordered': generalTable.classSelected.indexOf('Bordered') > -1,'table-hover': generalTable.classSelected.indexOf('Hover') > -1,'table-striped': generalTable.classSelected.indexOf('Striped') > -1}">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Username</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">1</th>
+                            <td>Mark</td>
+                            <td>Otto</td>
+                            <td>@mdo</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">2</th>
+                            <td>Jacob</td>
+                            <td>Thornton</td>
+                            <td>@fat</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">3</th>
+                            <td>Larry</td>
+                            <td>the Bird</td>
+                            <td>@twitter</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row page-title">
+    <div class="col-xs-12">
+        <h3>Data Table</h3>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="block-content">
+            <div class="content nopadding">
+                <table datatable="" class="datatable table table-hover table-striped" dt-options="dataTable.dtOptions" dt-columns="dataTable.dtColumns">
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row page-title">
+    <div class="col-xs-12">
+        <h3>Data Table with Scroller</h3>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="block-content">
+            <div class="content nopadding">
+                <table datatable="" class="datatable table table-hover table-striped" dt-options="dataTableWithScroller.dtOptions" dt-columns="dataTableWithScroller.dtColumns">
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

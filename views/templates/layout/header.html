@@ -1,0 +1,140 @@
+<nav class="navbar navbar-default navbar-fixed-top" ng-controller="MenuCtrl" ng-class="{'sub-navbar-open': menu_control.on_submenu }">
+    <div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" ng-sidr nav="navbar-nav">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#"><i class="fa fa-tasks"></i> 然宝宝后台管理系统</a>
+        </div>
+        <div class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li class="mobile-menu-header visible-xs">
+                    <i class="fa fa-bars mobile-menu-close"></i> 菜单
+                </li>
+                <li class="divider-vertical"></li>
+                <li ng-class="{active: menu_control.is_active('main.dashboard') }"><a ui-sref="main.dashboard" href="#/main/dashboard" ng-click="menu_control.submenu_toggled('')">主页</a>
+                </li>
+                <li class="divider-vertical"></li>
+                <li class="expand-dropdown blue" dropdown ng-class="{'active': menu_control.is_active('main.users') || menu_control.is_active('main.projects') || menu_control.is_active('main.example')}" on-toggle="menu_control.submenu_toggled(open)">
+                    <a href="#" class="expand-dropdown-toggle" dropdown-toggle>管理</a>
+                    <ul class="expand-dropdown-menu nav navbar-nav sub-nav">
+                        <li ng-class="{active: menu_control.is_active('main.users')}"><a href="#/main/users/index" ui-sref="main.users.index">管理用户</a>
+                        </li>
+                        <li class="divider-vertical"></li>
+                        <li ng-class="{active: menu_control.is_active('main.projects')}"><a href="#/main/projects/index" ui-sref="main.projects.index">管理店铺</a>
+                        </li>
+                        <li class="divider-vertical" ng-show="false"></li>
+                        <li ><a href="#/sessions/signin" ng-show=false ui-sref="sessions.signin">登陆界面</a>
+                        </li>
+                        <li class="divider-vertical" ng-show=false></li>
+                        <li><a href="#/sessions/register" ng-show=false ui-sref="sessions.register">注册界面</a>
+                        </li>
+                        <li class="divider-vertical"></li>
+                    </ul>
+                </li>
+                <li class="divider-vertical"></li>
+                <li   class="expand-dropdown green" dropdown ng-class="{'active': menu_control.is_active('main.elements')}" on-toggle="menu_control.submenu_toggled(open)">
+                    <a href="#" class="expand-dropdown-toggle"  dropdown-toggle>Elements</a>
+                    <ul class="expand-dropdown-menu nav navbar-nav sub-nav">
+                        <li ng-show=false ng-class="{active: menu_control.is_active('main.elements.index')}"><a href="#/main/elements/index" ui-sref="main.elements.index">Elements</a>
+                        </li>
+                        <li   class="divider-vertical"></li>
+                        <li   ng-class="{active: menu_control.is_active('main.elements.components')}"><a ui-sref="main.elements.components" href="#/main/elements/components">Components</a>
+                        </li>
+                        <li ng-show=false  class="divider-vertical"></li>
+                        <li ng-show=false  ng-class="{active: menu_control.is_active('main.elements.form')}"><a ui-sref="main.elements.form" href="#/main/elements/form">Form</a>
+                        </li>
+                        <li ng-show=false  class="divider-vertical"></li>
+                        <li ng-show=false  ng-class="{active: menu_control.is_active('main.elements.table')}"><a ui-sref="main.elements.table" href="#/main/elements/table">Table</a>
+                        </li>
+                        <li ng-show=false  class="divider-vertical"></li>
+                        <li ng-class="{active: menu_control.is_active('main.elements.infinite_scroll_table')}"><a ui-sref="main.elements.infinite_scroll_table" href="#/main/elements/infinite_scroll_table">任务列表</a>
+                        </li>
+                        <li ng-show=false  class="divider-vertical"></li>
+                        <li ng-show=false  ng-class="{active: menu_control.is_active('main.elements.infinite_scroll_grid')}"><a ui-sref="main.elements.infinite_scroll_grid" href="#/main/elements/infinite_scroll_grid">Infinite Scroll Grid</a>
+                        </li>
+                        <li ng-show=false  class="divider-vertical"></li>
+                        <li ng-show=false  ng-class="{active: menu_control.is_active('main.elements.chartjs')}"><a ui-sref="main.elements.chartjs" href="#/main/elements/chartjs">Chart.JS</a>
+                        </li>
+                        <li class="divider-vertical"></li>
+                    </ul>
+                </li>
+                </li>
+            </ul>
+
+            <ui class="nav navbar-nav navbar-right">
+                <li>
+                    <a ui-sref="sessions.signin" class="dropdown-toggle" dropdown-toggle data-toggle="dropdown" role="button" aria-expanded="false">退出登陆</a>
+                </li>
+            </ui>
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown icon notification no-arrow" dropdown>
+                    <a href="#" class="dropdown-toggle" dropdown-toggle data-toggle="dropdown" role="button" aria-expanded="false"><span class="alert-danger"><i class="fa fa-exclamation-circle"></i> 6</span></a>
+                    <ul class="dropdown-menu notification animated fadeInUp">
+                        <li class="dropdown-title-bar">
+                            Notification
+                            <span class="badge pull-right">6</span>
+                        </li>
+                        <li>
+                            <ul class="notification-list">
+                                <li class="danger">
+                                    <a href="#">
+                                        <div class="noti-message"><i class="fa fa-comments"></i> New Registration <span class="badge pull-right">3</span>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="warning">
+                                    <a href="#">
+                                        <div class="noti-message"><i class="fa fa-comments"></i> New Orders <span class="badge pull-right">1</span>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <div class="noti-message"><i class="fa fa-comments"></i> Messages <span class="badge pull-right">2</span>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="clear">
+                                    <a href="#">
+                                        <i class="fa fa-trash-o"></i> Clear
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li class="divider-vertical"></li>
+                <li class="dropdown profile no-arrow"  dropdown>
+                    <a href="#" class="dropdown-toggle" dropdown-toggle data-toggle="dropdown" role="button" aria-expanded="false">Emily Hart</a>
+                    <ul class="dropdown-menu user-info animated fadeInUp">
+                        <li>
+                            <div class="profile-card">
+                                <img src="images/profile.jpg" class="profile-img">
+                                <div class="pull-right">
+                                    <div class="profile-info">
+                                        <h4 class="username">Emily Hart</h4>
+                                        <hr>
+                                        <p>emily_hart@email.com</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="profile-menu">
+                            <div class="btn-group margin-bottom-2x" role="group">
+                                <button type="button" class="btn btn-default"><i class="fa fa-user"></i> 管理员信息</button>
+                                <span class="divider"></span>
+                                <button type="button" class="btn btn-default"><i class="fa fa-sign-out"></i> 退出登录</button>
+                            </div>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+</nav>

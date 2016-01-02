@@ -1,0 +1,44 @@
+<div class="row page-title">
+    <div class="col-xs-12">
+        <h3>Infinite Scroll Table</h3>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-13">
+        <div class="block-content todo-list">
+            <div class="header" style="position:relative">
+                <div class="title"><i class="fa fa-tasks"></i> Recent Tasks ( 12 )</div>
+                <div class="pull-right" style="top: 0px; margin-top: -26px;">
+                	<input type="text" placeHolder="Search" class="form-control">
+                </div>
+            </div>
+            <div class="content nopadding">
+                <div class="task-list" infinite-scroll="todo.scroll()">
+                    <div class="row" ng-repeat="item in todo.list track by $index">
+                        <div class="col-md-6  col-xs-12">
+                            <input type="checkbox" name="checkboxG{{$index}}" id="checkboxG{{$index}}" class="css-checkbox">
+                            <label for="checkboxG{{$index}}" class="css-label"></label> {{item.title}}
+                        </div>
+                        <div class="col-md-1 col-xs-1 text-center">
+                            <label class="css-lable">10/100</lable>
+                        </div>
+                        <div class="col-md-1  col-xs-1 text-center">
+                            <div class="alert alert-success">75%</div>
+                        </div>
+                        <div class="col-md-1 col-xs-1 text-center">
+                            <span class="label label-danger" ng-show="item.status == 'danger'">Deadline</span>
+                            <span class="label label-warning" ng-show="item.status == 'warning'">Coming</span>
+                        </div>
+                        <div class="col-md-1 col-xs-1 text-center">{{item.date | date:'mediumDate'}}</div>
+                        <div class="col-md-1  col-xs-1 text-center">
+                            <button class="btn btn-success" ng-click="toast.create('Task Done! Success.','success')">Success Toast</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="text-center color-white" ng-show="todo.loading">
+        	<h2><i class="fa fa-refresh fa-spin"></i></h2>
+        </div>
+    </div>
+</div>
