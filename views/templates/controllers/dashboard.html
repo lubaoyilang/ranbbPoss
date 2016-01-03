@@ -1,5 +1,5 @@
 <div class="content-container container-fluid">
-    <div class="row">
+    <div class="row" ng-show="false">
         <div class="col-sm-3">
             <ui-select ng-model="project.selected" theme="selectize" ng-disabled="disabled" class="project-select">
                 <ui-select-match placeholder="Select Projects">
@@ -28,7 +28,7 @@
         <div class="col-sm-3">
             <div class="block-content">
                 <div class="header">
-                    <span class="title">Uncomplete Task</span>
+                    <span class="title">收支平衡</span>
                 </div>
                 <div class="content">
                     <canvas id="pie" class="chart chart-pie" data="pie_data" labels="pie_labels" legend="true"></canvas>
@@ -38,22 +38,33 @@
         <div class="col-sm-9">
             <div class="block-content todo-list">
                 <div class="header">
-                    <div class="title"><i class="fa fa-tasks"></i> Recent Tasks ( 12 )</div>
+                    <div class="title"><i class="fa fa-tasks"></i> 最新订单动态</div>
                 </div>
                 <div class="content nopadding">
                     <div class="task-list">
                             <div class="row" ng-repeat="item in todo.list track by $index">
-                                <div class="col-md-8  col-xs-12">
+                                <div class="col-md-6  col-xs-12">
                                     <input type="checkbox" name="checkboxG{{$index}}" id="checkboxG{{$index}}" class="css-checkbox">
-                                    <label for="checkboxG{{$index}}" class="css-label"></label> {{item.title}}</div>
-                                <div class="col-md-1  col-xs-4 text-center">
+                                    <label for="checkboxG{{$index}}" class="css-label"></label> {{item.title}}
+                                </div>
+                                <div class="col-md-1 col-xs-1 text-center">
+                                    <span class="label label-info">70/100</span>
+                                </div>
+                                <div class="col-md-1  col-xs-1 text-center">
                                     <div class="alert alert-success">75%</div>
                                 </div>
-                                <div class="col-md-1 col-xs-4 text-center">
-                                    <span class="label label-danger" ng-show="item.status == 'danger'">Deadline</span>
-                                    <span class="label label-warning" ng-show="item.status == 'warning'">Coming</span>
+                                <div class="col-md-1 col-xs-1 text-center">
+                                    <span class="label label-success" ng-show="item.status == 'success'">刷单成功</span>
+                                    <span class="label label-warning" ng-show="item.status == 'warning'">等待审核</span>
+                                    <span class="label label-danger" ng-show="item.status == 'primary'">正在刷单</span>
+                                    <span class="label label-primary" ng-show="item.status == 'danger'">审核失败</span>
                                 </div>
-                                <div class="col-md-2 col-xs-4 text-center">{{item.date | date:'mediumDate'}}</div>
+                                <div class="col-md-1 col-xs-1 text-center">{{item.date | date:'mediumDate'}}</div>
+                                <div class="col-md-2  col-xs-1 text-center">
+                                    <button ng-show="item.status == 'warning'" class="btn btn-sm btn-success" ng-click="toast.create('Task Done! Success.','success')">审核通过</button>
+                                    <button ng-show="item.status == 'warning'" class="btn btn-sm btn-danger" ng-click="toast.create('Task Done! Success.','success')">审核失败</button>
+                                    <button ng-show="item.status == 'success'" class="btn btn-sm btn-warning" ng-click="toast.create('Task Done! Success.','success')">取消审核</button>
+                                </div>
                             </div>
                         </div>
                 </div>
@@ -62,36 +73,26 @@
     </div>
     <div class="row page-title">
         <div class="col-xs-12">
-            <h3>Projects Progress</h3>
+            <h3>最新商家动态</h3>
         </div>
     </div>
     <div class="row">
         <div class="col-sm-3" ng-repeat="project in projects">
             <div class="block-content">
-                <div class="content project-list nopadding">
+                <div class="content project-list nopadding" >
                     <div class="project-title">
-                        <i class="flaticon-{{project.icon}} flaticon"></i>
-                        <h4>{{project.name}}</h4>
+                        <img src="http://img2.imgtn.bdimg.com/it/u=2596377144,2633147124&fm=21&gp=0.jpg" style="height: 40px">
+                        <a ui-sref="main.projects.goodsList"><h4>{{project.name}}</h4></a>
+                        <a ng-click="modal.open('lg','modal-info')"  class="btn"><h6>编辑</h6></a>
                     </div>
                     <div class="project-info">
                         " Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. "
                     </div>
                     <div class="project-users">
                         <ul class="users-list">
-                            <li><i class="flaticon-business57 flaticon"></i>
-                            </li>
-                            <li><i class="flaticon-business57 flaticon"></i>
-                            </li>
-                            <li><i class="flaticon-business57 flaticon"></i>
-                            </li>
-                            <li><i class="flaticon-business57 flaticon"></i>
+                            <li> <img src="http://img2.imgtn.bdimg.com/it/u=2596377144,2633147124&fm=21&gp=0.jpg" class="flaticon" style="width: 40px">
                             </li>
                         </ul>
-                    </div>
-                    <div class="progress">
-                        <div class="progress-bar progress-bar-{{project.progress.status}} progress-bar-striped" role="progressbar" aria-valuenow="{{project.progress.percentage}}" aria-valuemin="0" aria-valuemax="100" style="width: {{project.progress.percentage}}%">
-                            <span>{{project.progress.percentage}}% Complete</span>
-                        </div>
                     </div>
                 </div>
             </div>

@@ -1,39 +1,36 @@
 angular.module("app").controller('DashboardCtrl', ['$scope','$state',function($scope,$state) {
-    if ($state.isLogin == false) {
-      $state.go("sessions.signin")
-    }
-    
+
     $scope.todo = {
         list: [{
-            title: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",
+            title: "马培龙",
             date: new Date(),
             status: "danger",
         },{
-            title: "Aliquam tincidunt mauris eu risus.",
+            title: "马培龙",
             date: new Date(),
             status: "danger"
         },{
-            title: "Vestibulum auctor dapibus neque.",
+            title: "马培龙",
             date: new Date(),
             status: "danger"
         },{
-            title: "Nunc dignissim risus id metus.",
+            title: "马培龙",
             date: new Date(),
             status: "danger"
         },{
-            title: "Cras ornare tristique elit.",
+            title: "马培龙",
             date: new Date(),
             status: "danger"
         },{
-            title: "Vivamus vestibulum nulla nec ante.",
+            title: "马培龙",
             date: new Date(),
             status: "danger"
         },{
-            title: "Praesent placerat risus quis eros.",
+            title: "马培龙",
             date: new Date(),
             status: "warning"
         },{
-            title: "Fusce pellentesque suscipit nibh.",
+            title: "马培龙",
             date: new Date(),
             status: "warning"
         }],
@@ -45,7 +42,7 @@ angular.module("app").controller('DashboardCtrl', ['$scope','$state',function($s
     $scope.project = {};
     $scope.projects = [
         {
-            name: "Message Backend",
+            name: "童鞋旗舰店1",
             icon: "chronometer",
             color: "#3498DB",
             progress: {
@@ -54,7 +51,7 @@ angular.module("app").controller('DashboardCtrl', ['$scope','$state',function($s
             }
         },
         {
-            name: "Location-Base iOS App",
+            name: "童鞋旗舰店2",
             icon: "screen79",
             color: "#1ABC9C",
             progress: {
@@ -63,7 +60,7 @@ angular.module("app").controller('DashboardCtrl', ['$scope','$state',function($s
             }
         },
         {
-            name: "Company Goal",
+            name: "童鞋旗舰店3",
             icon: "objective",
             color: "#F04903",
             progress: {

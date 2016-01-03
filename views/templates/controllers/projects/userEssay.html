@@ -9,7 +9,7 @@
             <div class="header" style="position:relative">
                 <div class="title"><i class="fa fa-tasks"></i> Recent Tasks ( 12 )</div>
                 <div class=" pull-right" style="top: 0px; margin-top: -26px;">
-                	<input type="text" placeHolder="Search" ng-model="query" class="form-control">
+                    <input type="text" placeHolder="Search" ng-model="query" class="form-control">
                 </div>
             </div>
             <div class="content nopadding row">
@@ -24,21 +24,27 @@
             <div class="content nopadding">
                 <div class="task-list"  infinite-scroll="todo.scroll()">
                     <div class="row" ng-repeat="item in todo.list  | filter : query ">
-                        <div class="col-md-6  col-xs-12">
+                        <div class="col-md-5  col-xs-12">
                             <input type="checkbox" name="checkboxG{{$index}}" id="checkboxG{{$index}}" class="css-checkbox">
                             <label for="checkboxG{{$index}}" class="css-label"></label> {{item.title}}
                         </div>
                         <div class="col-md-1 col-xs-1 text-center">
-                            <span class="label label-info">70/100</span>
+                            <label class="css-lable">取现金额</label>
+                            <span class="label label-info">100元</span>
                         </div>
                         <div class="col-md-1  col-xs-1 text-center">
-                            <div class="alert alert-success">75%</div>
+                            <label class="css-lable">账户资产</label>
+                            <span class="label label-info">100元</span>
+                        </div>
+                        <div class="col-md-1  col-xs-1 text-center">
+                            <label class="css-lable">利息</label>
+                            <span class="label label-info">10元</span>
                         </div>
                         <div class="col-md-1 col-xs-1 text-center">
-                            <span class="label label-success" ng-show="item.status == 'success'">刷单成功</span>
+                            <span class="label label-success" ng-show="item.status == 'success'">取现成功</span>
                             <span class="label label-warning" ng-show="item.status == 'warning'">等待审核</span>
-                            <span class="label label-danger" ng-show="item.status == 'primary'">正在刷单</span>
-                            <span class="label label-primary" ng-show="item.status == 'danger'">审核失败</span>
+                            <span class="label label-danger" ng-show="item.status == 'primary'">正在汇款</span>
+                            <span class="label label-primary" ng-show="item.status == 'danger'">取现失败</span>
                         </div>
                         <div class="col-md-1 col-xs-1 text-center">{{item.date | date:'mediumDate'}}</div>
                         <div class="col-md-2  col-xs-1 text-center">
@@ -51,7 +57,7 @@
             </div>
         </div>
         <div class="text-center color-white" ng-show="todo.loading">
-        	<h2><i class="fa fa-refresh fa-spin"></i></h2>
+            <h2><i class="fa fa-refresh fa-spin"></i></h2>
         </div>
     </div>
 </div>

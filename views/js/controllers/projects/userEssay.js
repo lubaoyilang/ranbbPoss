@@ -1,4 +1,7 @@
-angular.module("app").controller('ElementInfiniteScrollTableCtrl', ['$scope', '$modal', '$timeout', function($scope, $modal, $timeout) {
+/**
+ * Created by wangmeng on 16/1/3.
+ */
+angular.module("app").controller('UserEssayController', ['$scope', '$modal', '$timeout', function($scope, $modal, $timeout) {
 
     $scope.searchText = "";
 
@@ -9,7 +12,7 @@ angular.module("app").controller('ElementInfiniteScrollTableCtrl', ['$scope', '$
                 $scope.todo.loading = true;
                 $timeout(function() {
                     $scope.todo.list.push({
-                        title: "用户 陈赫 刷单成功",
+                        title: "申请取现",
                         date: new Date(),
                         status: "success",
                     }, {
@@ -50,43 +53,43 @@ angular.module("app").controller('ElementInfiniteScrollTableCtrl', ['$scope', '$
             date: new Date(),
             status: "success"
         },{
-            title: "用户 陈赫 刷单成功",
+            title: "用户 陈赫 申请取现",
             date: new Date(),
             status: "success",
         },{
-            title: "用户 陈赫 刷单成功",
+            title: "用户 陈赫 申请取现",
             date: new Date(),
             status: "success",
         },{
-            title: "用户 陈赫 刷单成功",
+            title: "用户 陈赫 申请取现",
             date: new Date(),
             status: "success",
         },{
-            title: "用户 陈赫 刷单成功",
+            title: "用户 陈赫 申请取现",
             date: new Date(),
             status: "success",
         },{
-            title: "用户 陈赫 刷单成功",
+            title: "用户 陈赫 申请取现",
             date: new Date(),
             status: "success",
         },{
-            title: "用户 陈赫 刷单成功",
+            title: "用户 陈赫 申请取现",
             date: new Date(),
             status: "success",
         },{
-            title: "用户 陈赫 刷单成功",
+            title: "用户 陈赫 申请取现",
             date: new Date(),
             status: "success",
         },{
-            title: "用户 陈赫 刷单成功",
+            title: "用户 陈赫 申请取现",
             date: new Date(),
             status: "success",
         },{
-            title: "用户 陈赫 刷单成功",
+            title: "用户 陈赫 申请取现",
             date: new Date(),
             status: "success",
         },{
-            title: "用户 陈赫 刷单成功",
+            title: "用户 陈赫 申请取现",
             date: new Date(),
             status: "success",
         }]

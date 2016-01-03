@@ -19,13 +19,16 @@
                 <li ng-class="{active: menu_control.is_active('main.dashboard') }"><a ui-sref="main.dashboard" href="#/main/dashboard" ng-click="menu_control.submenu_toggled('')">主页</a>
                 </li>
                 <li class="divider-vertical"></li>
-                <li class="expand-dropdown blue" dropdown ng-class="{'active': menu_control.is_active('main.users') || menu_control.is_active('main.projects') || menu_control.is_active('main.example')}" on-toggle="menu_control.submenu_toggled(open)">
+                <li class="expand-dropdown blue" dropdown ng-class="{'active': menu_control.is_active('main.users') || menu_control.is_active('main.projects') || menu_control.is_active('main.example')||menu_control.is_active('main.projects.userEssay')}" on-toggle="menu_control.submenu_toggled(open)">
                     <a href="#" class="expand-dropdown-toggle" dropdown-toggle>管理</a>
                     <ul class="expand-dropdown-menu nav navbar-nav sub-nav">
                         <li ng-class="{active: menu_control.is_active('main.users')}"><a href="#/main/users/index" ui-sref="main.users.index">管理用户</a>
                         </li>
                         <li class="divider-vertical"></li>
                         <li ng-class="{active: menu_control.is_active('main.projects')}"><a href="#/main/projects/index" ui-sref="main.projects.index">管理店铺</a>
+                        </li>
+                        <li class="divider-vertical"></li>
+                        <li ng-class="{active: menu_control.is_active('main.projects.userEssay')}"><a href="#/main/projects/userEssay" ui-sref="main.projects.userEssay">客户取现</a>
                         </li>
                         <li class="divider-vertical" ng-show="false"></li>
                         <li ><a href="#/sessions/signin" ng-show=false ui-sref="sessions.signin">登陆界面</a>
@@ -37,28 +40,31 @@
                     </ul>
                 </li>
                 <li class="divider-vertical"></li>
-                <li   class="expand-dropdown green" dropdown ng-class="{'active': menu_control.is_active('main.elements')}" on-toggle="menu_control.submenu_toggled(open)">
+                <li ng-show="false"   class="expand-dropdown green" dropdown ng-class="{'active': menu_control.is_active('main.elements')}" on-toggle="menu_control.submenu_toggled(open)">
                     <a href="#" class="expand-dropdown-toggle"  dropdown-toggle>Elements</a>
                     <ul class="expand-dropdown-menu nav navbar-nav sub-nav">
                         <li ng-show=false ng-class="{active: menu_control.is_active('main.elements.index')}"><a href="#/main/elements/index" ui-sref="main.elements.index">Elements</a>
                         </li>
+                        <li  ng-show="true" class="divider-vertical"></li>
+                        <li  ng-show="true" ng-class="{active: menu_control.is_active('main.elements.components')}"><a ui-sref="main.elements.components" href="#/main/elements/components">Components</a>
+                        </li>
+                        <li ng-show="false"  class="divider-vertical"></li>
+                        <li  ng-show="false" ng-class="{active: menu_control.is_active('main.elements.form')}"><a ui-sref="main.elements.form" href="#/main/elements/form">Form</a>
+                        </li>
+                        <li  class="divider-vertical"></li>
+                        <li   ng-class="{active: menu_control.is_active('main.elements.table')}"><a ui-sref="main.elements.table" href="#/main/elements/table">Table</a>
+                        </li>
                         <li   class="divider-vertical"></li>
-                        <li   ng-class="{active: menu_control.is_active('main.elements.components')}"><a ui-sref="main.elements.components" href="#/main/elements/components">Components</a>
-                        </li>
-                        <li ng-show=false  class="divider-vertical"></li>
-                        <li ng-show=false  ng-class="{active: menu_control.is_active('main.elements.form')}"><a ui-sref="main.elements.form" href="#/main/elements/form">Form</a>
-                        </li>
-                        <li ng-show=false  class="divider-vertical"></li>
-                        <li ng-show=false  ng-class="{active: menu_control.is_active('main.elements.table')}"><a ui-sref="main.elements.table" href="#/main/elements/table">Table</a>
-                        </li>
-                        <li ng-show=false  class="divider-vertical"></li>
                         <li ng-class="{active: menu_control.is_active('main.elements.infinite_scroll_table')}"><a ui-sref="main.elements.infinite_scroll_table" href="#/main/elements/infinite_scroll_table">任务列表</a>
                         </li>
-                        <li ng-show=false  class="divider-vertical"></li>
-                        <li ng-show=false  ng-class="{active: menu_control.is_active('main.elements.infinite_scroll_grid')}"><a ui-sref="main.elements.infinite_scroll_grid" href="#/main/elements/infinite_scroll_grid">Infinite Scroll Grid</a>
+                        <li   class="divider-vertical"></li>
+                        <li ng-class="{active: menu_control.is_active('main.elements.infinite_scroll_table')}"><a ui-sref="main.elements.infinite_scroll_table" href="#/main/elements/infinite_scroll_table">客户取现</a>
                         </li>
-                        <li ng-show=false  class="divider-vertical"></li>
-                        <li ng-show=false  ng-class="{active: menu_control.is_active('main.elements.chartjs')}"><a ui-sref="main.elements.chartjs" href="#/main/elements/chartjs">Chart.JS</a>
+                        <li  ng-show="false" class="divider-vertical"></li>
+                        <li ng-show="false"  ng-class="{active: menu_control.is_active('main.elements.infinite_scroll_grid')}"><a ui-sref="main.elements.infinite_scroll_grid" href="#/main/elements/infinite_scroll_grid">Infinite Scroll Grid</a>
+                        </li>
+                        <li  ng-show="false" class="divider-vertical"></li>
+                        <li ng-show="false"  ng-class="{active: menu_control.is_active('main.elements.chartjs')}"><a ui-sref="main.elements.chartjs" href="#/main/elements/chartjs">Chart.JS</a>
                         </li>
                         <li class="divider-vertical"></li>
                     </ul>

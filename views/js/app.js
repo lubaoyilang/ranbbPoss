@@ -69,6 +69,11 @@ app = angular.module("app", ["ngSanitize","ngAnimate","ui.router", "ui.bootstrap
     templateUrl: 'templates/controllers/projects/goodsList.html',
     controller: 'GoodsListCtrl'
   })
+  .state('main.projects.userEssay', {
+    url: '/userEssay',
+    templateUrl: 'templates/controllers/projects/userEssay.html',
+    controller: 'UserEssayController'
+  })
   .state('main.users.create', {
     url: '/create',
     templateUrl: 'templates/controllers/users/create.html'
