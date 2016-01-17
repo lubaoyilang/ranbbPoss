@@ -43,28 +43,31 @@
                 <div class="content nopadding">
                     <div class="task-list">
                             <div class="row" ng-repeat="item in todo.list track by $index">
-                                <div class="col-md-6  col-xs-12">
-                                    <input type="checkbox" name="checkboxG{{$index}}" id="checkboxG{{$index}}" class="css-checkbox">
-                                    <label for="checkboxG{{$index}}" class="css-label"></label> {{item.title}}
+                                <div class="col-md-2  col-xs-12">
+                                    <!--<input type="checkbox" name="checkboxG{{$index}}" id="checkboxG{{$index}}" class="css-checkbox">-->
+                                    <label  class="css-label"></label> {{item.GoodsName}}
+                                </div>
+                                <div class="col-md-1  col-xs-12">
+                                    <label  class="css-label"></label> {{item.CategroyName}}
+                                </div>
+                                <div class="col-md-3  col-xs-12">
+                                    <!--<input type="checkbox" name="checkboxG{{$index}}" id="checkboxG{{$index}}" class="css-checkbox">-->
+                                    <label  class="css-label"></label> 用户ID:{{item.Uid}}
                                 </div>
                                 <div class="col-md-1 col-xs-1 text-center">
-                                    <span class="label label-info">70/100</span>
+                                    <span class="label label-info">价格:{{item.Price}}</span>
                                 </div>
                                 <div class="col-md-1  col-xs-1 text-center">
-                                    <div class="alert alert-success">75%</div>
+                                    <div class="alert alert-success">佣金:{{item.Brokerage}}</div>
                                 </div>
                                 <div class="col-md-1 col-xs-1 text-center">
-                                    <span class="label label-success" ng-show="item.status == 'success'">刷单成功</span>
-                                    <span class="label label-warning" ng-show="item.status == 'warning'">等待审核</span>
-                                    <span class="label label-danger" ng-show="item.status == 'primary'">正在刷单</span>
-                                    <span class="label label-primary" ng-show="item.status == 'danger'">审核失败</span>
+                                    <span class="label label-success" ng-show="item.State == '2'">刷单成功</span>
+                                    <span class="label label-warning" ng-show="item.State == '1'">等待审核</span>
+                                    <span class="label label-danger" ng-show="item.State == '0'">正在刷单</span>
+                                    <span class="label label-primary" ng-show="item.State == '3'">审核失败</span>
                                 </div>
-                                <div class="col-md-1 col-xs-1 text-center">{{item.date | date:'mediumDate'}}</div>
-                                <div class="col-md-2  col-xs-1 text-center">
-                                    <button ng-show="item.status == 'warning'" class="btn btn-sm btn-success" ng-click="toast.create('Task Done! Success.','success')">审核通过</button>
-                                    <button ng-show="item.status == 'warning'" class="btn btn-sm btn-danger" ng-click="toast.create('Task Done! Success.','success')">审核失败</button>
-                                    <button ng-show="item.status == 'success'" class="btn btn-sm btn-warning" ng-click="toast.create('Task Done! Success.','success')">取消审核</button>
-                                </div>
+                                <div class="col-md-3 col-xs-1 text-center">{{item.Updatetime*1000 | date:'yyyy-MM-dd HH:mm:ss'}}</div>
+
                             </div>
                         </div>
                 </div>
@@ -81,12 +84,12 @@
             <div class="block-content">
                 <div class="content project-list nopadding" >
                     <div class="project-title">
-                        <img src="http://img2.imgtn.bdimg.com/it/u=2596377144,2633147124&fm=21&gp=0.jpg" style="height: 40px">
-                        <a ui-sref="main.projects.goodsList"><h4>{{project.name}}</h4></a>
+                        <img ng-src={{project.ImageUrl}} style="height: 40px">
+                        <a ui-sref="main.projects.goodsList"><h4>{{project.Shopname}}</h4></a>
                         <a ng-click="modal.open('lg','modal-info')"  class="btn"><h6>编辑</h6></a>
                     </div>
                     <div class="project-info">
-                        " Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. "
+                       {{project.Memo}}
                     </div>
                     <div class="project-users">
                         <ul class="users-list">

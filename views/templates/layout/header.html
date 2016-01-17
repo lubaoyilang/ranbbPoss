@@ -22,7 +22,7 @@
                 <li class="expand-dropdown blue" dropdown ng-class="{'active': menu_control.is_active('main.users') || menu_control.is_active('main.projects') || menu_control.is_active('main.example')||menu_control.is_active('main.projects.userEssay')}" on-toggle="menu_control.submenu_toggled(open)">
                     <a href="#" class="expand-dropdown-toggle" dropdown-toggle>管理</a>
                     <ul class="expand-dropdown-menu nav navbar-nav sub-nav">
-                        <li ng-class="{active: menu_control.is_active('main.users')}"><a href="#/main/users/index" ui-sref="main.users.index">管理用户</a>
+                        <li ng-class="{active: menu_control.is_active('main.users')}"><a href="#/main/users/adminList" ui-sref="main.users.adminList">管理用户</a>
                         </li>
                         <li class="divider-vertical"></li>
                         <li ng-class="{active: menu_control.is_active('main.projects')}"><a href="#/main/projects/index" ui-sref="main.projects.index">管理店铺</a>
@@ -48,8 +48,8 @@
                         <li  ng-show="true" class="divider-vertical"></li>
                         <li  ng-show="true" ng-class="{active: menu_control.is_active('main.elements.components')}"><a ui-sref="main.elements.components" href="#/main/elements/components">Components</a>
                         </li>
-                        <li ng-show="false"  class="divider-vertical"></li>
-                        <li  ng-show="false" ng-class="{active: menu_control.is_active('main.elements.form')}"><a ui-sref="main.elements.form" href="#/main/elements/form">Form</a>
+                        <li ng-show="true"  class="divider-vertical"></li>
+                        <li  ng-show="true" ng-class="{active: menu_control.is_active('main.elements.form')}"><a ui-sref="main.elements.form" href="#/main/elements/form">Form</a>
                         </li>
                         <li  class="divider-vertical"></li>
                         <li   ng-class="{active: menu_control.is_active('main.elements.table')}"><a ui-sref="main.elements.table" href="#/main/elements/table">Table</a>
@@ -74,10 +74,10 @@
 
             <ui class="nav navbar-nav navbar-right">
                 <li>
-                    <a ui-sref="sessions.signin" class="dropdown-toggle" dropdown-toggle data-toggle="dropdown" role="button" aria-expanded="false">退出登陆</a>
+                    <a ng-click='logout()' role="button" aria-expanded="false">退出登陆</a>
                 </li>
             </ui>
-            <ul class="nav navbar-nav navbar-right">
+            <ul ng-show="false" class="nav navbar-nav navbar-right">
                 <li class="dropdown icon notification no-arrow" dropdown>
                     <a href="#" class="dropdown-toggle" dropdown-toggle data-toggle="dropdown" role="button" aria-expanded="false"><span class="alert-danger"><i class="fa fa-exclamation-circle"></i> 6</span></a>
                     <ul class="dropdown-menu notification animated fadeInUp">
@@ -115,7 +115,7 @@
                     </ul>
                 </li>
                 <li class="divider-vertical"></li>
-                <li class="dropdown profile no-arrow"  dropdown>
+                <li ng-show="false" class="dropdown profile no-arrow"  dropdown>
                     <a href="#" class="dropdown-toggle" dropdown-toggle data-toggle="dropdown" role="button" aria-expanded="false">Emily Hart</a>
                     <ul class="dropdown-menu user-info animated fadeInUp">
                         <li>

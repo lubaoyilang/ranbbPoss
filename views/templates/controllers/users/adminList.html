@@ -1,0 +1,55 @@
+<div class="row page-title">
+    <div class="col-xs-6">
+        <h2>管理员账户管理</h2>
+    </div>
+    <div class="col-xs-6">
+        <div class="pull-right">
+        <button type="button" ui-sref="main.users.create" class="btn btn-success btn-lg"><i class="fa fa-pencil-square-o"></i> 创建管理员</button>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-13">
+        <div class="block-content todo-list">
+            <div class="header" style="position:relative">
+                <div class="title"><i class="fa fa-tasks"></i> 管理员列表 </div>
+                <div class=" pull-right" style="top: 0px; margin-top: -26px;">
+                    <input type="text" placeHolder="Search" ng-model="query" class="form-control">
+                </div>
+            </div>
+            <div class="content nopadding">
+                <div class="task-list"  infinite-scroll="todo.scroll()">
+                    <div class="row" ng-repeat="item in todo.list  | filter : query ">
+                        <div class="col-md-3  col-xs-12">
+                            <label class="css-label"></label>{{item.Name}}
+                        </div>
+                        <div class="col-md-3  col-xs-12">
+                            <label class="css-label"></label>{{item.Mobile}}
+                        </div>
+
+                        <div class="col-md-1  col-xs-12">
+                            <span class="label label-info" ng-show="item.Privilege == 'root'">超级管理员</span>
+                            <span class="label label-info" ng-show="item.Privilege == '1'">店铺管理员</span>
+                            <span class="label label-info" ng-show="item.Privilege == '2'">订单管理员</span>
+                            <span class="label label-info" ng-show="item.Privilege == '3'">财务管理员</span>
+                        </div>
+                        <div class="col-md-1 col-xs-1 text-center">
+                            <span class="label label-info" ng-show="item.State == '0'">正常</span>
+                            <span class="label label-danger" ng-show="item.State == '1'">禁用</span>
+                        </div>
+
+                        <div class="col-md-2  col-xs-1 text-center">
+                            <button  class="btn btn-sm btn-warning" ng-click="modal.open('lg','modal-info',item)">编辑信息</button>
+                            <button  class="btn btn-sm btn-danger" ng-click="deleteAdmin(item)">删除管理员</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="text-center color-white" ng-show="todo.loading">
+            <h2><i class="fa fa-refresh fa-spin"></i></h2>
+        </div>
+    </div>
+
+</div>

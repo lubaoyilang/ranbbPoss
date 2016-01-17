@@ -1,4 +1,4 @@
-angular.module("app").controller('SessionSigninCtrl', ['$scope', '$modal', '$timeout','$state', function($scope, $modal, $timeout,$state) {
+angular.module("app").controller('SessionSigninCtrl', ['$scope', '$modal', '$timeout','$state','$http', function($scope, $modal, $timeout,$state,$http) {
   $state.isLogin = false;
     $scope.login = {
         mode: "",
@@ -30,15 +30,33 @@ angular.module("app").controller('SessionSigninCtrl', ['$scope', '$modal', '$tim
             		$scope.login.errors.password = true;
             		$scope.login.mode = "errors"
             	} else {
-            		$scope.login.mode = "success"
-            		$scope.login.message = "登陆成功,请稍后...";
-            		$timeout(function() {
-                  $state.isLogin = true;
-            			$state.go('main.dashboard');
-            		}, 1000);
+            		// $scope.login.mode = "success"
+            		// $scope.login.message = "登陆成功,请稍后...";
+            		// $timeout(function() {
+                //   $state.isLogin = true;
+            		// 	$state.go('main.dashboard');
+            		// }, 1000);
+
+                $http({method: 'POST',
+                      url: '/ranbb/login',
+                      params:{'username':user.username,'password':user.password}})
+                .success(function(data, status, headers, config) {
+                      console.log(data);
+                      if (data.username == user.username) {
+                          $state.isLogin = true; 
+                          $state.go('main.dashboard');
+                      }else{
+                        $scope.login.mode = "errors";
+                    		$scope.login.message = data;
+                      }
+                })
+                .error(function(data, status, headers, config) {
+                        scope.login.mode = "errors";
+                        $scope.login.message = "网络错误";
+                });
             	}
 
-            }, 1000);
+            }, 10);
         },
         change: function() {
         	$scope.login.mode = "";

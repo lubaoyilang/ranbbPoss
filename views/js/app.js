@@ -30,7 +30,6 @@ app = angular.module("app", ["ngSanitize","ngAnimate","ui.router", "ui.bootstrap
     }
 
     $rootScope.$state = $state;
-    $state.isLogin = false;
     return $rootScope.$stateParams = $stateParams;
   }
 ]).config(function($stateProvider, $urlRouterProvider) {
@@ -54,6 +53,11 @@ app = angular.module("app", ["ngSanitize","ngAnimate","ui.router", "ui.bootstrap
     templateUrl: 'templates/controllers/users/index.html',
     controller: 'ManageUserCtrl'
   })
+  .state('main.users.adminList',{
+        url:'/adminList',
+        templateUrl:'templates/controllers/users/adminList.html',
+        controller:'AdminListController'
+  })
   .state('main.projects', {
     abstract: true,
     url: '/projects',
@@ -76,7 +80,8 @@ app = angular.module("app", ["ngSanitize","ngAnimate","ui.router", "ui.bootstrap
   })
   .state('main.users.create', {
     url: '/create',
-    templateUrl: 'templates/controllers/users/create.html'
+    templateUrl: 'templates/controllers/users/create.html',
+    controller:'CreateAdminController'
   })
   .state('main.example', {
     abstract: true,

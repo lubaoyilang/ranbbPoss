@@ -1,75 +1,25 @@
-angular.module("app").controller('DashboardCtrl', ['$scope','$state',function($scope,$state) {
+angular.module("app").controller('DashboardCtrl', ['$scope','$state','$http',function($scope,$state,$http) {
 
-    $scope.todo = {
-        list: [{
-            title: "马培龙",
-            date: new Date(),
-            status: "danger",
-        },{
-            title: "马培龙",
-            date: new Date(),
-            status: "danger"
-        },{
-            title: "马培龙",
-            date: new Date(),
-            status: "danger"
-        },{
-            title: "马培龙",
-            date: new Date(),
-            status: "danger"
-        },{
-            title: "马培龙",
-            date: new Date(),
-            status: "danger"
-        },{
-            title: "马培龙",
-            date: new Date(),
-            status: "danger"
-        },{
-            title: "马培龙",
-            date: new Date(),
-            status: "warning"
-        },{
-            title: "马培龙",
-            date: new Date(),
-            status: "warning"
-        }],
-        add: function(task) {
-            console.log(task);
-        }
-    };
+    //获取最新店铺
+    $http({method: 'POST',
+        url: '/ranbb/newShops'
+        })
+        .success(function(data, status, headers, config) {
+            console.log(data);
+            $scope.projects = data
+        })
+        .error(function(data, status, headers, config) {
 
-    $scope.project = {};
-    $scope.projects = [
-        {
-            name: "童鞋旗舰店1",
-            icon: "chronometer",
-            color: "#3498DB",
-            progress: {
-                percentage: 80,
-                status: "warning"
-            }
-        },
-        {
-            name: "童鞋旗舰店2",
-            icon: "screen79",
-            color: "#1ABC9C",
-            progress: {
-                percentage: 40,
-                status: "danger"
-            }
-        },
-        {
-            name: "童鞋旗舰店3",
-            icon: "objective",
-            color: "#F04903",
-            progress: {
-                percentage: 96,
-                status: "success"
-            }
-        }
-    ];
+        });
+    //获取最新订单
+    $http({method: 'POST',
+        url: '/ranbb/neworders'
+    }).success(function(data, status, headers, config) {
+            console.log(data);
+            $scope.todo = {list:data}
+     }).error(function(data, status, headers, config) {
 
+     });
 
     $scope.pie_labels = ["Design", "Development", "Testing"];
     $scope.pie_data = [300, 500, 100];
