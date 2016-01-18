@@ -4,7 +4,7 @@ angular.module("app").controller("GlobalCtrl", [
 
         $http({method: 'POST', url: '/ranbb/checkSession'})
         .success(function(data, status, headers, config) {
-            if (data.Name == null) {
+            if (data.Code < 0) {
                 $state.go('sessions.signin');
             }
         })

@@ -23,12 +23,13 @@ func (this * MainController) CheckSession() {
 	admin := this.GetSession("userInfo")
 	if admin == nil {
 		beego.Debug("MainController-CheckSession",admin)
-		this.Redirect("/ranbb/admin/#/sessions/signin",301)
+//		this.Redirect("/ranbb/admin/#/sessions/signin",301)
+		this.Data["json"]=&Response{Code:-1,Data:nil}
 		this.ServeJson()
 		return;
 	}
 	beego.Debug("MainController-CheckSession",admin.(*model.Admin))
-	this.Data["json"] = admin
+	this.Data["json"] = &Response{Code:1,Data:admin}
 	this.ServeJson()
 }
 
