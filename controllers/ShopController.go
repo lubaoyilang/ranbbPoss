@@ -13,6 +13,7 @@ func (this *ShopController)GetNewShops() {
 	admin := this.checkSession();
 	if admin == nil{
 		this.ServeJson()
+		return
 	}
 
 	shops,err := model.GetNewShop()
@@ -37,4 +38,40 @@ func (this * ShopController)checkSession() ( *model.Admin) {
 	}
 
 	return admin
+}
+
+func (this * ShopController)UpdateShop() {
+	admin := this.checkSession();
+	if admin == nil{
+		this.Data["json"]=Response{-1,"登陆超时,请重新登陆"}
+		this.ServeJson()
+		return
+	}
+	_,_,err := this.GetFile("file")
+	if err != nil {
+		beego.Error(err.Error())
+	}
+	this.SaveToFile("file","file.png")
+	this.ServeJson()
+}
+
+func (this * ShopController)GetShopList() {
+	admin := this.checkSession();
+	if admin == nil{
+		this.Data["json"]=Response{-1,"登陆超时,请重新登陆"}
+		this.ServeJson()
+		return
+	}
+	page,_ := this.GetInt("page")
+	size,_ := this.GetInt("size")
+
+	shops,err := model.GetShopByPage(page,size)
+	if err != nil {
+		this.Data["json"]=Response{-1,"查询失败"}
+		this.ServeJson()
+		return;
+	}
+	this.Data["json"]=Response{Code:1,Data:shops}
+	this.ServeJson()
+	return
 }

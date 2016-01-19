@@ -12,7 +12,7 @@
                 </div>
                 <div class="form-group">
                     <label for="adminPhone">管理员手机号</label>
-                    <input type="phone" class="form-control" id="adminPhone" ng-model="admin.Mobile">
+                    <input type="phone" class="form-" id="adminPhone" ng-model="admin.Mobile">
                 </div>
                 <div class="form-group">
                     <label for="adminPswd">管理员密码(不修改本项,则不填写)</label>
@@ -50,19 +50,27 @@
             <div class="content">
                 <div class="form-group">
                     <label for="shopName">商家名称</label>
-                    <input type="text" class="form-control" id="shopName" placeholder="商家名称">
+                    <input type="text" class="form-control" id="shopName" disabled="true" placeholder="商家名称" ng-model="shop.Shopname">
+                </div>
+                <div class="form-group">
+                    <label for="shopImg">商家图片</label>
+                    <input type="file"  id="shopImg" onchange="angular.element(this).scope().selectedImage(this)" ng-model="shop.image">
                 </div>
                 <div class="form-group">
                     <label for="shopPhone">商家手机号</label>
-                    <input type="phone" class="form-control" id="shopPhone" placeholder="商家手机号">
+                    <input type="phone" class="form-control" id="shopPhone" placeholder="商家手机号" ng-model="shop.Mobile">
                 </div>
                 <div class="form-group">
                     <label for="shopEmail">商家邮箱</label>
-                    <input type="email" class="form-control" id="shopEmail" placeholder="商家邮箱">
+                    <input type="email" class="form-control" id="shopEmail" placeholder="商家邮箱" ng-model="shop.Email">
                 </div>
                 <div class="form-group">
                     <label for="shopTaobaoAccount">商家淘宝账号</label>
-                    <input type="text" class="form-control" id="shopTaobaoAccount" placeholder="商家淘宝账号">
+                    <input type="text" class="form-control" id="shopTaobaoAccount" placeholder="商家淘宝账号" ng-model="shop.Shoptaobaoid">
+                </div>
+                <div>
+                    <label for="shopTaobaoAccount">商家注释</label>
+                    <textarea class="form-control" id="memo" ng-model="shop.Memo"></textarea>
                 </div>
             </div>
         </form>

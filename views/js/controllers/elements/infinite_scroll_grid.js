@@ -1,9 +1,10 @@
-angular.module("app").controller('ElementInfiniteScrollGridCtrl', ['$scope', '$modal','$timeout', function($scope, $modal,$timeout) {
+angular.module("app").controller('ElementInfiniteScrollGridCtrl', ['$scope', '$modal','$timeout','$http', function($scope, $modal,$timeout,$http) {
     $scope.project = {
         loading: false,
         scroll: function() {
             if (!$scope.project.loading) {
                 $scope.project.loading = true;
+
                 $timeout(function() {
 		            $scope.projects.push({
 		                name: "Message Backend",
