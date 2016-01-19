@@ -13,12 +13,12 @@
         <div class="block-content">
             <div class="content project-list nopadding" >
                 <div class="project-title">
-                    <img src="http://img2.imgtn.bdimg.com/it/u=2596377144,2633147124&fm=21&gp=0.jpg" style="height: 40px">
-                    <a ui-sref="main.projects.goodsList"><h4>{{project.name}}</h4></a>
-                    <a ng-click="modal.open('lg','modal-info')"  class="btn"><h6>编辑</h6></a>
+                    <img ng-src={{project.ImageUrl}} style="height: 40px">
+                    <a ui-sref="main.projects.goodsList"><h4>{{project.Shopname}}</h4></a>
+                    <a ng-click="modal.open('lg','modal-info',project)"  class="btn"><h6>编辑</h6></a>
                 </div>
                 <div class="project-info">
-                    " Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. "
+                    {{project.Memo}}
                 </div>
                 <div class="project-users">
                     <ul class="users-list">

@@ -23,3 +23,17 @@ func GetNewShop() (*[]Shop,error) {
 	_,err:=o.Raw(`select * from shop order by createTime desc limit 10 `).QueryRows(&shops)
 	return &shops,err;
 }
+
+func GetShopByPage(page,size int)(*[]Shop,error) {
+	var shops []Shop
+	if size == 0 {
+		size = 20
+	}
+
+	if page == 0 {
+		page = 1
+	}
+	o := orm.NewOrm()
+	_,err:=o.Raw(`select * from shop order by createTime desc limit ? offset ? `,size,(page-1)*size).QueryRows(&shops)
+	return &shops,err;
+}
