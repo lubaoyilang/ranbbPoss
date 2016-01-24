@@ -17,6 +17,7 @@ func init() {
 	beego.Router("/ranbb/newShops",&controllers.ShopController{},"Post:GetNewShops")
 	beego.Router("/ranbb/getShopList",&controllers.ShopController{},"post:GetShopList")
 	beego.Router("/ranbb/updateShop",&controllers.ShopController{},"post:UpdateShop")
+	beego.Router("/ranbb/addShop",&controllers.ShopController{},"post:AddShop")
 
 
 	beego.Router("/ranbb/getAdminList",&controllers.AdminController{},"Post:GetAdminList")

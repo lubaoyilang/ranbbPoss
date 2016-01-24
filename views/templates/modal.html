@@ -46,7 +46,7 @@
         <h3 class="modal-title">编辑店铺信息</h3>
     </div>
     <div class="modal-body">
-        <form class="form-vertical">
+        <form class="form-vertical" action="/ranbb/updateShop" method="POST"  ng-model="formData">
             <div class="content">
                 <div class="form-group">
                     <label for="shopName">商家名称</label>
@@ -76,8 +76,8 @@
         </form>
     </div>
     <div class="modal-footer">
-        <button class="btn btn-primary" ng-click="ok()">提交</button>
-        <button class="btn btn-warning" ng-click="cancel()">取消</button>
+        <button type="submit" class="btn btn-primary" ng-click="ok()">提交</button>
+        <button type="submit" class="btn btn-warning" ng-click="cancel()">取消</button>
     </div>
 </script>
 

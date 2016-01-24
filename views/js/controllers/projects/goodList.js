@@ -14,6 +14,7 @@ angular.module("app").controller('GoodsListCtrl', ['$scope','$modal','$timeout',
             });
         }
     }
+    $scope.isCollapsed = false;
 
     $scope.project = {
         loading: false,

@@ -14,7 +14,7 @@ angular.module('app').controller('ShopEditAndAddController', function ($scope,$h
             method: 'POST',
             url: '/ranbb/updateShop',
             headers: { 'Content-Type': 'multipart/form-data'},
-            data:  {"file":file}
+            data: $.param($scope.formData)
         })
             .success(function(data, status) {
                 alert("Success ... " + status);

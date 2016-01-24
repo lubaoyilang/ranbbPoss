@@ -1,4 +1,4 @@
-angular.module("app").controller('ProjectIndexCtrl', ['$scope','$modal','$timeout','$http','ngToast',function($scope,$modal,$timeout,$http,ngToast) {
+angular.module("app").controller('ProjectIndexCtrl', ['$scope','$modal','$timeout','$state','$http','ngToast','$rootScope',function($scope,$modal,$timeout,$state,$http,ngToast,$rootScope) {
 
     $scope.modal = {
         open: function(size,class_name,project) {
@@ -15,6 +15,11 @@ angular.module("app").controller('ProjectIndexCtrl', ['$scope','$modal','$timeou
             }, function() {
             });
         }
+    }
+
+    $scope.gotoEditShop = function(project){
+        $rootScope.shop = project;
+        $state.go('main.projects.editShop');
     }
 
    $scope.project = {

@@ -1,5 +1,8 @@
 package model
-import "github.com/astaxie/beego/orm"
+import (
+	"github.com/astaxie/beego/orm"
+	"fmt"
+)
 
 type Shop struct {
 	Shopid       int    `orm:"column(shopId);unique;auto;pk"`
@@ -36,4 +39,71 @@ func GetShopByPage(page,size int)(*[]Shop,error) {
 	o := orm.NewOrm()
 	_,err:=o.Raw(`select * from shop order by createTime desc limit ? offset ? `,size,(page-1)*size).QueryRows(&shops)
 	return &shops,err;
+}
+func GetShopById(id int) (v *Shop, err error) {
+	o := orm.NewOrm()
+	v = &Shop{Shopid: id}
+	if err = o.Read(v); err == nil {
+		return v, nil
+	}
+	return nil, err
+}
+func UpdateShopById(m *Shop) (err error) {
+	o := orm.NewOrm()
+	v := Shop{Shopid: m.Shopid}
+	// ascertain id exists in the database
+	if err = o.Read(&v); err == nil {
+		var num int64
+		if num, err = o.Update(m); err == nil {
+			fmt.Println("Number of records updated in database:", num)
+		}
+	}
+	return
+}
+
+func GetShopByName(name string) (v *Shop, err error) {
+	o := orm.NewOrm()
+	v = &Shop{Shopname: name}
+	if err = o.Read(v,"shopName"); err == nil {
+		return v, nil
+	}
+	return nil, err
+}
+
+func GetShopByMobile(mobile string) (v *Shop, err error) {
+	o := orm.NewOrm()
+	v = &Shop{Mobile: mobile}
+	if err = o.Read(v,"mobile"); err == nil {
+		return v, nil
+	}
+	return nil, err
+}
+
+func GetShopByEmail(email string) (v *Shop, err error) {
+	o := orm.NewOrm()
+	v = &Shop{Email: email}
+	if err = o.Read(v,"email"); err == nil {
+		return v, nil
+	}
+	return nil, err
+}
+func GetShopByShoptaobaoid(shoptaobaoid string) (v *Shop, err error) {
+	o := orm.NewOrm()
+	v = &Shop{Shoptaobaoid: shoptaobaoid}
+	if err = o.Read(v,"shopTaoBaoId"); err == nil {
+		return v, nil
+	}
+	return nil, err
+}
+
+
+func AddShop(s * Shop) (int64,error) {
+	o := orm.NewOrm()
+	o.Begin()
+	if id,err := o.Insert(s);err == nil&&id > 0 {
+		return id,o.Commit()
+	}else {
+		o.Rollback()
+		return 0,err
+	}
 }

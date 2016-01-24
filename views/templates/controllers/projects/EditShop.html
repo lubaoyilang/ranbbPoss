@@ -1,0 +1,47 @@
+<div class="row page-title">
+    <div class="col-xs-6">
+        <h2>编辑店铺</h2>
+    </div>
+</div>
+<div class="block-content">
+
+<div class="modal-header">
+    <h3 class="modal-title">编辑店铺信息</h3>
+</div>
+<div class="modal-body">
+    <form id="data" class="form-vertical">
+        <div class="content">
+            <div class="form-group">
+                <label for="shopName">商家名称</label>
+                <input type="text" class="form-control" name="shopName" id="shopName" placeholder="商家名称" ng-model="shop.Shopname">
+            </div>
+            <div class="form-group">
+                <label for="shopImg">商家图片</label>
+                <input type="file"  id="shopImg" name="file" file-model="shop.image">
+            </div>
+            <div class="form-group">
+                <label for="shopPhone">商家手机号</label>
+                <input type="phone" class="form-control" name="shopPhone" id="shopPhone" placeholder="商家手机号" ng-model="shop.Mobile">
+            </div>
+            <div class="form-group">
+                <label for="shopEmail">商家邮箱</label>
+                <input type="email" class="form-control" name="shopEmail" id="shopEmail" placeholder="商家邮箱" ng-model="shop.Email">
+            </div>
+            <div class="form-group">
+                <label for="shopTaobaoAccount">商家淘宝账号</label>
+                <input type="text" class="form-control" id="shopTaobaoAccount" name="shopTaobaoAccount" placeholder="商家淘宝账号" ng-model="shop.Shoptaobaoid">
+            </div>
+            <div>
+                <label for="shopTaobaoAccount">商家注释</label>
+                <textarea class="form-control" name="memo" id="memo" ng-model="shop.Memo"></textarea>
+            </div>
+        </div>
+
+        <div class="modal-footer">
+            <button type="submit" ng-click="updateShopInfo()"  class="btn btn-primary" >提交</button>
+            <button type="button" ng-click="backToShopList()" class="btn btn-warning" >取消</button>
+        </div>
+    </form>
+</div>
+
+</div>

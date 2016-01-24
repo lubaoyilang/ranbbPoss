@@ -3,19 +3,23 @@
         <h2>店铺列表</h2>
     </div>
     <div class="col-xs-6">
+
         <div class="pull-right">
-            <button type="button" ui-sref="main.projects.create" class="btn btn-info btn-lg"><i class="fa fa-pencil-square-o"></i> 添加店铺</button>
+            <button type="button" ui-sref="main.projects.addShop" class="btn btn-info btn-lg"><i class="fa fa-pencil-square-o"></i> 添加店铺</button>
+        </div>
+        <div class="pull-right">
+            <input type="text" placeHolder="Search" ng-model="query" class="form-control" style="margin-top: 5px;padding-right: 10px">
         </div>
     </div>
 </div>
 <div class="row" infinite-scroll="project.scroll()">
-    <div class="col-sm-3" ng-repeat="project in projects">
+    <div class="col-sm-3" ng-repeat="project in projects | filter : query ">
         <div class="block-content">
             <div class="content project-list nopadding" >
                 <div class="project-title">
                     <img ng-src={{project.ImageUrl}} style="height: 40px">
                     <a ui-sref="main.projects.goodsList"><h4>{{project.Shopname}}</h4></a>
-                    <a ng-click="modal.open('lg','modal-info',project)"  class="btn"><h6>编辑</h6></a>
+                    <a ng-click="gotoEditShop(project)"  class="btn"><h6>编辑</h6></a>
                 </div>
                 <div class="project-info">
                     {{project.Memo}}
