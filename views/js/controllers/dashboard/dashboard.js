@@ -1,5 +1,7 @@
 angular.module("app").controller('DashboardCtrl', ['$scope','$state','$http',function($scope,$state,$http) {
 
+
+
     //获取最新店铺
     $http({method: 'POST',
         url: '/ranbb/newShops'
