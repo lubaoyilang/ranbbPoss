@@ -14,30 +14,25 @@
         <div class="block-content" >
             <div class="content project-list nopadding" >
                 <div class="project-title">
-                    <img src="http://img2.imgtn.bdimg.com/it/u=2596377144,2633147124&fm=21&gp=0.jpg" style="height: 40px">
-                    <a ui-sref="main.elements.infinite_scroll_table"><h4>{{project.name}}</h4></a>
-                    <a ng-click="modal.open('lg','modal-info')"  class="btn"><h6>编辑</h6></a>
+                    <img ng-src={{project.Imageurl}} style="height: 40px">
+                    <a ng-href="main.elements.infinite_scroll_table"><h4>{{project.Shopname}}</h4></a>
+                    <a ng-click="gotoEditGoods(project)"class="btn"><h6>编辑</h6></a>
                 </div>
                 <div class="project-info">
-                    " Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. "
+                    {{project.Memo}}
                 </div>
                 <table class="table" style="margin-bottom: 0px">
                     <tr>
                         <th class="text-center">
                             <span>佣金</span>
-                            <span>100</span>
+                            <span>{{project.Brokerage*0.01}}</span>
                         </th>
                         <th class="text-center">
                             <span>价格</span>
-                            <span>20</span>
+                            <span>{{project.SettingPrice*0.01}}</span>
                         </th>
                     </tr>
                 </table>
-                <div class="progress">
-                    <div class="progress-bar progress-bar-{{project.progress.status}} progress-bar-striped" role="progressbar" aria-valuenow="{{project.progress.percentage}}" aria-valuemin="0" aria-valuemax="100" style="width: {{project.progress.percentage}}%">
-                        <span>{{project.progress.percentage}}% Complete</span>
-                    </div>
-                </div>
             </div>
         </div>
     </div>

@@ -15,12 +15,17 @@ angular.module("app").controller('ProjectIndexCtrl', ['$scope','$modal','$timeou
             }, function() {
             });
         }
-    }
+    };
 
     $scope.gotoEditShop = function(project){
         $rootScope.shop = project;
         $state.go('main.projects.editShop');
-    }
+    };
+
+    $scope.gotoGoodsList = function(shop){
+        $rootScope.shop = shop;
+        $state.go('main.projects.goodsList');
+    };
 
    $scope.project = {
         loading: false,

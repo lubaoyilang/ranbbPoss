@@ -24,4 +24,8 @@ func init() {
 	beego.Router("/ranbb/addAdmin",&controllers.AdminController{},"Post:AddAdmin")
 	beego.Router("/ranbb/deleteAdmin",&controllers.AdminController{},"post:DeleteAdmin")
 	beego.Router("/ranbb/updateAdmin",&controllers.AdminController{},"post:UpdateAdmin")
+
+
+	beego.Router("/ranbb/getGoodsList",&controllers.GoodsController{},"post:GetGoodsList")
+	beego.Router("/ranbb/updateGoods",&controllers.GoodsController{},"post:UpdateGoods")
 }

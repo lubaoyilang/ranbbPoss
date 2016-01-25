@@ -18,7 +18,7 @@
             <div class="content project-list nopadding" >
                 <div class="project-title">
                     <img ng-src={{project.ImageUrl}} style="height: 40px">
-                    <a ui-sref="main.projects.goodsList"><h4>{{project.Shopname}}</h4></a>
+                    <a ng-click="gotoGoodsList(project)"><h4>{{project.Shopname}}</h4></a>
                     <a ng-click="gotoEditShop(project)"  class="btn"><h6>编辑</h6></a>
                 </div>
                 <div class="project-info">

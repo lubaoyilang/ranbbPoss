@@ -1,5 +1,8 @@
 package model
-import "github.com/astaxie/beego/orm"
+import (
+	"github.com/astaxie/beego/orm"
+	"fmt"
+)
 
 type Goods struct {
 	Goodid                int    `orm:"column(goodId);pk;auto;unique;size(11)"`
@@ -22,11 +25,31 @@ func init() {
 }
 
 
-func GetGoodsByShopId(shopId int)  {
+func GetGoodsByShopId(shopId int) (*[]Goods,error) {
+	goods := make([]Goods,0)
 	o := orm.NewOrm()
-	v := &Goods{Shopid: shopId}
-	if err := o.Read(v,"shopId"); err == nil {
-	return v, nil
+	_,err := o.Raw(`select * from goods where shopId=?`,shopId).QueryRows(&goods)
+	return &goods,err
+}
+
+func GetGoodsById(goodsId int) (v *Goods,err error) {
+	o := orm.NewOrm()
+	v = &Goods{Goodid: goodsId}
+	if err = o.Read(v); err == nil {
+		return v, nil
 	}
 	return nil, err
+}
+
+func UpdateGoods(goods * Goods) (err error) {
+	o := orm.NewOrm()
+	v := Goods{Goodid: goods.Goodid}
+	// ascertain id exists in the database
+	if err = o.Read(&v); err == nil {
+		var num int64
+		if num, err = o.Update(goods); err == nil {
+			fmt.Println("Number of records updated in database:", num)
+		}
+	}
+	return
 }
