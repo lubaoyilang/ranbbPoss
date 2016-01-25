@@ -4,17 +4,11 @@ angular.module("app").controller("GlobalCtrl", [
 
         $http({method: 'POST', url: '/ranbb/checkSession'})
         .success(function(data, status, headers, config) {
-<<<<<<< HEAD
            if(data==undefined||data.Code < 0){
                $state.go('sessions.signin');
            }else{
-               $state.go('sessions.signin');
+               //$state.go('sessions.signin');
            }
-=======
-            if (data.Code < 0) {
-                $state.go('sessions.signin');
-            }
->>>>>>> 034fbb043100612dfb6f4db269e937f35baaa065
         })
         .error(function(data, status, headers, config) {
             $state.go('sessions.signin');

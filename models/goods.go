@@ -20,3 +20,13 @@ type Goods struct {
 func init() {
 	orm.RegisterModel(new(Goods))
 }
+
+
+func GetGoodsByShopId(shopId int)  {
+	o := orm.NewOrm()
+	v := &Goods{Shopid: shopId}
+	if err := o.Read(v,"shopId"); err == nil {
+	return v, nil
+	}
+	return nil, err
+}
