@@ -4,7 +4,7 @@
     </div>
     <div class="col-xs-6">
         <div class="pull-right">
-            <button type="button" ui-sref="main.projects.create" class="btn btn-info btn-lg"><i class="fa fa-pencil-square-o"></i> 添加商品</button>
+            <button type="button" ng-click="gotoAddGoods()" class="btn btn-info btn-lg"><i class="fa fa-pencil-square-o"></i> 添加商品</button>
         </div>
     </div>
 </div>
@@ -15,7 +15,7 @@
             <div class="content project-list nopadding" >
                 <div class="project-title">
                     <img ng-src={{project.Imageurl}} style="height: 40px">
-                    <a ng-href="main.elements.infinite_scroll_table"><h4>{{project.Shopname}}</h4></a>
+                    <a ng-href=""><h4>{{project.Shopname}}</h4></a>
                     <a ng-click="gotoEditGoods(project)"class="btn"><h6>编辑</h6></a>
                 </div>
                 <div class="project-info">

@@ -1,0 +1,50 @@
+<div class="row page-title">
+    <div class="col-xs-6">
+        <h2>添加商品</h2>
+    </div>
+</div>
+<div class="block-content">
+
+    <div class="modal-header">
+        <h3 class="modal-title">添加商品信息</h3>
+    </div>
+    <div class="modal-body">
+        <form id="data" class="form-vertical">
+            <div class="content">
+                <div class="form-group">
+                    <label for="goodsName">商品名称</label>
+                    <input type="text" required class="form-control" name="goodsName" id="goodsName" placeholder="商品名称" ng-model="goods.GoodsName">
+                </div>
+                <div class="form-group">
+                    <label for="goodsImg">商品图片</label>
+                    <input type="file"  id="goodsImg" name="file" file-model="goods.image">
+                </div>
+                <div class="form-group">
+                    <label for="requireLevel">刷单要求等级</label>
+                    <input type="number" required class="form-control" name="requireLevel" id="requireLevel" placeholder="刷单要求等级" ng-model="goods.Requirelevel">
+                </div>
+                <div class="form-group">
+                    <label for="Brokerage">刷单佣金(元)</label>
+                    <input type="number" required step="0.01" class="form-control" name="Brokerage" id="Brokerage" placeholder="刷单佣金" ng-model="Brokerage">
+                </div>
+                <div class="form-group">
+                    <label for="SettingPrice">预设金额</label>
+                    <input type="number" required step="0.01" class="form-control" name="SettingPrice" id="SettingPrice" placeholder="预设金额" ng-model="SettingPrice">
+                </div>
+                <div>
+                    <label for="memo">商家要求</label>
+                    <textarea class="form-control" required name="memo" id="memo" ng-model="goods.Memo"></textarea>
+                </div>
+                <div class="form-group" style="margin-top: 10px">
+                    <input type="checkbox" ng-checked="goods.State=='1'" ng-model="State" class="css-checkbox" id="state">
+                    <label for="state" class="css-label">商品状态(选中为在售,不选中为下线)</label>
+                </div>
+            </div>
+
+
+            <div class="modal-footer">
+                <button type="submit" ng-click="addGoods()"  class="btn btn-primary" >提交</button>
+                <button type="button" ng-click="backToShopList()" class="btn btn-warning" >取消</button>
+            </div>
+        </form>
+    </div>

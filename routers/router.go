@@ -3,6 +3,7 @@ package routers
 import (
 	"ranbbPoss/controllers"
 	"github.com/astaxie/beego"
+//	"github.com/astaxie/beego/context"
 )
 
 func init() {
@@ -28,4 +29,14 @@ func init() {
 
 	beego.Router("/ranbb/getGoodsList",&controllers.GoodsController{},"post:GetGoodsList")
 	beego.Router("/ranbb/updateGoods",&controllers.GoodsController{},"post:UpdateGoods")
+	beego.Router("/ranbb/addGoods",&controllers.GoodsController{},"post:AddGoods")
+
+//	var FilterUser = func(ctx *context.Context) {
+//		_, ok := ctx.Input.Session("uid").(int)
+//		if !ok && ctx.Request.RequestURI != "/ranbb/admin/#/sessions/signin" {
+//			ctx.Redirect(302, "/ranbb/admin/#/sessions/signin")
+//		}
+//	}
+//
+//	beego.InsertFilter("/*",beego.BeforeRouter,FilterUser)
 }

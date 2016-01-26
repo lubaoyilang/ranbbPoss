@@ -53,3 +53,14 @@ func UpdateGoods(goods * Goods) (err error) {
 	}
 	return
 }
+
+func AddGoods(goods * Goods) (int64,error) {
+	o := orm.NewOrm()
+	o.Begin()
+	if id,err := o.Insert(goods);err == nil&&id > 0 {
+		return id,o.Commit()
+	}else {
+		o.Rollback()
+		return 0,err
+	}
+}

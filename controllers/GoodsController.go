@@ -46,95 +46,123 @@ func (this * GoodsController)AddGoods() {
 		return
 	}
 
-	beego.Debug(this.Ctx.Input.Params)
+	beego.Debug(this.Input())
 
-	shopName := this.GetString("Shopname")
-	shopPhone := this.GetString("Mobile")
-	shopEmail := this.GetString("Email")
-	shopTaobaoAccount := this.GetString("Shoptaobaoid")
+	Shopid,err:= this.GetInt("Shopid",0)
+	if err != nil||Shopid <= 0 {
+		beego.Error(Shopid)
+		this.Data["json"]=Response{-1,"不存在的店铺"}
+		this.ServeJson()
+		return
+	}
+	GoodsName := this.GetString("GoodsName")
+	Requirelevel := this.GetString("Requirelevel")
+	Brokerage := this.GetString("Brokerage")
+	SettingPrice := this.GetString("SettingPrice")
+	State := this.GetString("State")
 	memo := this.GetString("Memo")
 
-	shop,err := model.GetShopByName(shopName)
-	if err == nil&&shop!=nil {
-		this.Data["json"]=Response{Code:-1,Data:"店铺名称已存在"}
+	//	id,err := strconv.Atoi(Goodid)
+	//	if err != nil {
+	//		beego.Error(Goodid,err.Error())
+	//		this.Data["json"]=Response{-1,"不存在的商品"}
+	//		this.ServeJson()
+	//		return
+	//	}
+
+	level,err := strconv.Atoi(Requirelevel)
+	if err != nil {
+		beego.Error(Requirelevel,err.Error())
+		this.Data["json"]=Response{-1,"错误的等级要求"}
 		this.ServeJson()
 		return
 	}
-	shop,err = model.GetShopByMobile(shopPhone)
-	if err == nil&&shop!=nil {
-		this.Data["json"]=Response{Code:-1,Data:"店铺手机号码已存在"}
-		this.ServeJson()
-		return
-	}
-	shop,err = model.GetShopByEmail(shopEmail)
-	if err == nil&&shop!=nil {
-		this.Data["json"]=Response{Code:-1,Data:"店铺邮箱已存在"}
-		this.ServeJson()
-		return
-	}
-	shop,err = model.GetShopByShoptaobaoid(shopTaobaoAccount)
-	if err == nil&&shop!=nil {
-		this.Data["json"]=Response{Code:-1,Data:"店铺淘宝账号已存在"}
+	brokerage,err := strconv.Atoi(Brokerage)
+	if err != nil {
+		beego.Error(Brokerage,err.Error())
+		this.Data["json"]=Response{-1,"错误的佣金数量"}
 		this.ServeJson()
 		return
 	}
 
-	var newshop model.Shop
-	if len(shopName) > 0 {
-		newshop.Shopname = shopName
+	settingPrice,err := strconv.Atoi(SettingPrice)
+	if err != nil {
+		beego.Error(SettingPrice,err.Error())
+		this.Data["json"]=Response{-1,"错误的价格数量"}
+		this.ServeJson()
+		return
 	}
-	if len(shopPhone) > 0 {
-		newshop.Mobile = shopPhone
+
+	state,err := strconv.Atoi(State)
+	if err != nil {
+		beego.Error(State,err.Error())
+		this.Data["json"]=Response{-1,"错误的状态"}
+		this.ServeJson()
+		return
 	}
-	if len(shopEmail) > 0 {
-		newshop.Email = shopEmail
+
+
+	shop,err := model.GetShopById(Shopid)
+	if err != nil || shop == nil{
+		beego.Error(shop,err.Error(),shop)
+		this.Data["json"]=Response{-1,"不存在的商品"}
+		this.ServeJson()
+		return
 	}
-	if len(shopTaobaoAccount) > 0 {
-		newshop.Shoptaobaoid = shopTaobaoAccount
+
+	goods := model.Goods{}
+
+	if len(GoodsName) > 0 {
+		goods.GoodsName = GoodsName
+	}
+	if level >= 0 {
+		goods.Requirelevel = level
+	}
+	if brokerage > 0 {
+		goods.Brokerage = int64(brokerage)
+	}
+	if settingPrice > 0 {
+		goods.SettingPrice = int64(settingPrice)
+	}
+	if state ==0||state == 1 {
+		goods.State = state
 	}
 	if len(memo) > 0 {
-		newshop.Memo = memo
+		goods.Memo = memo
 	}
 
-	newshop.Updatetime = time.Now().Unix()
-	newshop.Createtime = time.Now().Unix()
-
-	shopId,err := model.AddShop(&newshop)
-	if err != nil && shopId <= 0 {
-		this.Data["json"]=Response{Code:-1,Data:"添加店铺失败"}
-		this.ServeJson()
-		return
-	}
+	goods.Createtime = time.Now().Unix()
+	goods.Updatetime = time.Now().Unix()
+	goods.Shopname = shop.Shopname
+	goods.Shopid = shop.Shopid
 
 	_,fileHeader,err := this.GetFile("file")
 	if err != nil {
 		beego.Error(err.Error())
 	}else {
+
 		filetype := fileHeader.Header.Get("Content-Type")
-		beego.Info(filetype)
+
 		var imgPath string
 		if strings.Contains(filetype,"image") {
-			imgPath = fmt.Sprintf("./views/img/shop-%d-%d.%s",shopId,newshop.Updatetime,filetype[6:])
+			imgPath = fmt.Sprintf("./views/img/goods-%d-%d.%s",goods.Goodid,goods.Updatetime,filetype[6:])
 			err = this.SaveToFile("file",imgPath)
 			if err == nil {
-				newshop.ImageUrl = beego.AppConfig.String("localHost")+imgPath[8:]
+				goods.Imageurl = beego.AppConfig.String("localHost")+imgPath[8:]
+			}else{
+				beego.Error("保存上传的图片文件错误")
 			}
 		}else{
 			beego.Error("上传的不是图片文件")
-			this.Data["json"]=Response{-1,"上传的不是图片文件"}
-			this.ServeJson()
-			return
 		}
 	}
 
-	err = model.UpdateShopById(&newshop)
-	if err != nil {
+	goodid,err := model.AddGoods(&goods)
+	if err != nil||goodid <= 0{
 		beego.Error(err.Error())
 	}
-
-	this.Data["json"]=Response{Code:1,Data:"添加成功"}
+	this.Data["json"]=Response{1,"更新成功"}
 	this.ServeJson()
-	return
 
 }
 
