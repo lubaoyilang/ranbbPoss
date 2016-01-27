@@ -14,9 +14,10 @@
             </div>
             <div class="content nopadding row">
                 <div class="col-sm-13">
-                    <div class="col-md-2 col-xs-10">
+                    <div class="col-md-4 col-xs-10">
                         <button style="margin-left: 20px"  class="btn btn-sm btn-info pull-left" ng-click="addCategory()">添加商品分类</button>
-                        <a href="/ranbb/exportOrders?goodId={{goods.Goodid}}"  class="btn btn-sm btn-default pull-left">导出待审核纪录</a>
+                        <a href="/ranbb/exportOrders?goodId={{goods.Goodid}}"  class="btn btn-sm btn-default">导出待审核纪录</a>
+                        <button style="margin-left: 20px"  class="btn btn-sm btn-info " ng-click="gotoOrderList()">查看刷单详情</button>
                     </div>
                 </div>
             </div>

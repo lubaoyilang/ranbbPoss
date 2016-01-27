@@ -57,7 +57,7 @@ func GetOrderByCategoryId(id int) (* []Orders,error){
 	return &orders,err
 }
 
-func GetOrdersByGoodsId(goodsId int)(*[]ExportOrders,error)  {
+func GetOrdersByGoodsId(goodsId ,state int)(*[]ExportOrders,error)  {
 	var orders []ExportOrders
 	o := orm.NewOrm()
 	_,err := o.Raw(`select os.orderId as orderId,
@@ -73,6 +73,29 @@ func GetOrdersByGoodsId(goodsId int)(*[]ExportOrders,error)  {
 	 					   os.shopRequire as shopRequire,
 	 					   os.updateTime as updateTime,
 	 					   os.memo as memo
-	 				from orders os left join user ur on ur.UID=os.UID where goodId=? AND state=1  ORDER BY categroyId`,goodsId).QueryRows(&orders)
+	 				from orders os left join user ur on ur.UID=os.UID where goodId=? AND state=?  ORDER BY categroyId`,goodsId,state).QueryRows(&orders)
+	return &orders,err
+}
+
+func GetAllOrdersByGoodsIdAndPage(goodsId,page int)(*[]ExportOrders,error)  {
+	if page <=0 {
+		page = 1
+	}
+	var orders []ExportOrders
+	o := orm.NewOrm()
+	_,err := o.Raw(`select os.orderId as orderId,
+						   os.shopName as shopName,
+						   os.goodsName as goodsName,
+						   os.categroyName as categroyName,
+						   ur.realName as realName,
+						   os.taobaoAccount as taobaoAccount,
+						   os.state as state,
+						   os.price*0.01 as price,
+						   os.brokerAge*0.01 as brokerAge,
+	 					   os.requireLevel as requireLevel,
+	 					   os.shopRequire as shopRequire,
+	 					   os.updateTime as updateTime,
+	 					   os.memo as memo
+	 				from orders os left join user ur on ur.UID=os.UID where goodId=? ORDER BY state limit 20 offset ? `,goodsId,(page-1)*20).QueryRows(&orders)
 	return &orders,err
 }

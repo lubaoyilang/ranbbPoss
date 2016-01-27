@@ -14,6 +14,7 @@ func init() {
 
 	beego.Router("/ranbb/neworders", &controllers.OrderController{},"Post:GetNewOrders")
 	beego.Router("/ranbb/exportOrders",&controllers.OrderController{},"Get:ExportOrders")
+	beego.Router("/ranbb/getOrders",&controllers.OrderController{},"Post:GetOrders")
 
 
 	beego.Router("/ranbb/newShops",&controllers.ShopController{},"Post:GetNewShops")

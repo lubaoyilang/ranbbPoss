@@ -47,7 +47,7 @@ func (this * OrderController)ExportOrders()  {
 		return
 	}
 
-	orders,err :=  model.GetOrdersByGoodsId(goodId)
+	orders,err :=  model.GetOrdersByGoodsId(goodId,1)
 	if err != nil {
 		this.Data["json"] = Response{-1,"没有找到相关订单"}
 		this.ServeJson()
@@ -69,6 +69,39 @@ func (this * OrderController)ExportOrders()  {
 	w.Flush()
 	this.Ctx.Output.Download("test.xls",fmt.Sprintf("订单导出-%s.xls",time.Now().Format("2006-01-02_15:04")))
 	os.Remove("test.xls")
+}
+
+
+func (this *OrderController)GetOrders() {
+	admin := this.checkSession()
+	if admin == nil {
+		this.Data["json"] = Response{-1,"还没好呢"}
+		this.ServeJson()
+		return
+	}
+
+	goodId,err := this.GetInt("goodsId",0)
+	if err != nil || goodId <= 0{
+		this.Data["json"] = Response{-1,"参数错误"}
+		this.ServeJson()
+		return
+	}
+
+	page,err := this.GetInt("page",0)
+	if err != nil {
+		page = 0
+	}
+
+	orders,err :=  model.GetAllOrdersByGoodsIdAndPage(goodId,page)
+	if err != nil {
+		this.Data["json"] = Response{-1,"查询错误"}
+		this.ServeJson()
+		return
+	}
+
+	this.Data["json"] = Response{1,orders}
+	this.ServeJson()
+
 }
 
 

@@ -13,6 +13,11 @@ angular.module("app").controller('CategoryListController', ['$scope','$modal','$
         $state.go('main.projects.addCategory');
     }
 
+    $scope.gotoOrderList = function(){
+        $rootScope.goods = $scope.goods;
+        $state.go('main.projects.orderList');
+    }
+
     $scope.editCategory = function(category){
         $rootScope.category = category;
         $state.go('main.projects.editCategory');
