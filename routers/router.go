@@ -13,6 +13,7 @@ func init() {
 	beego.Router("/ranbb/logout",&controllers.MainController{},"post:Logout")
 
 	beego.Router("/ranbb/neworders", &controllers.OrderController{},"Post:GetNewOrders")
+	beego.Router("/ranbb/exportOrders",&controllers.OrderController{},"Get:ExportOrders")
 
 
 	beego.Router("/ranbb/newShops",&controllers.ShopController{},"Post:GetNewShops")

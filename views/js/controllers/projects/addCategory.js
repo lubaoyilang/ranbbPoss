@@ -5,8 +5,11 @@ angular.module("app").controller('AddCategoryController', ['$scope','$modal','$t
     $scope.goods = $rootScope.goods;
     $scope.enableTime = 0;
     $scope.Price  = 0;
+    var nowDate = new Date();
+    nowDate.setMilliseconds(0);
+    nowDate.setSeconds(0);
+    $scope.dt = new Date((nowDate.getTime()/1000).toFixed(0)*1000);
     $scope.category = {
-        dt:new Date(),
         Goodid:$scope.goods.Goodid,
         Shopid:$scope.goods.Shopid};
     $scope.addCategory = function(){
@@ -20,7 +23,7 @@ angular.module("app").controller('AddCategoryController', ['$scope','$modal','$t
         fd.append("Memo",$scope.category.Memo);
         fd.append("GoodsId",$scope.category.Goodid);
         fd.append("ShopId",$scope.category.Shopid);
-        fd.append("EnableTime",$scope.category.dt.getTime()/1000);
+        fd.append("EnableTime",$scope.dt.getTime()/1000);
 
         $http.post('/ranbb/addCategory',fd, {
             transformRequest: angular.identity,

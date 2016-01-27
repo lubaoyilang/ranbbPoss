@@ -5,8 +5,8 @@ import (
 	_ "ranbbPoss/routers"
 	_ "github.com/astaxie/beego/session/mysql"
 	"github.com/astaxie/beego/orm"
-	"github.com/astaxie/beego/context"
-	"ranbbPoss/models"
+//	"github.com/astaxie/beego/context"
+//	"ranbbPoss/models"
 )
 
 
@@ -29,13 +29,13 @@ func init() {
 
 func main() {
 
-	var FilterUser = func(ctx *context.Context) {
-		_, ok := ctx.Input.Session("userInfo").(* model.Admin)
-		if !ok && ctx.Request.RequestURI != "/ranbb/admin/uploadFile.html" {
-			ctx.Redirect(301, "http://127.0.0.1:8082/ranbb/admin/uploadFile.html")
-		}
-	}
-	beego.InsertFilter("/*",beego.BeforeRouter,FilterUser)
+//	var FilterUser = func(ctx *context.Context) {
+//		_, ok := ctx.Input.Session("userInfo").(* model.Admin)
+//		if !ok && ctx.Request.RequestURI != "/ranbb/admin/uploadFile.html" {
+//			ctx.Redirect(301, "http://127.0.0.1:8082/ranbb/admin/uploadFile.html")
+//		}
+//	}
+//	beego.InsertFilter("/*",beego.BeforeRouter,FilterUser)
 
 	beego.Run()
 

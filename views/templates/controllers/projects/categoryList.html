@@ -16,7 +16,7 @@
                 <div class="col-sm-13">
                     <div class="col-md-2 col-xs-10">
                         <button style="margin-left: 20px"  class="btn btn-sm btn-info pull-left" ng-click="addCategory()">添加商品分类</button>
-                        <!--<button  class="btn btn-sm btn-default pull-left" ng-click="deleteSelectCategorys()">删除选中分类</button>-->
+                        <a href="/ranbb/exportOrders?goodId={{goods.Goodid}}"  class="btn btn-sm btn-default pull-left">导出待审核纪录</a>
                     </div>
                 </div>
             </div>
@@ -32,7 +32,7 @@
                             <label  class="css-label"></label> {{item.Memo}}
                         </div>
                         <div class="col-md-1 col-xs-1 text-center">
-                            <span class="label label-info">{{item.OutNum}}/{{item.TotalNum}}</span>
+                            <span class="label label-info"><a>{{item.OutNum}}/{{item.TotalNum}}</a></span>
                         </div>
                         <div class="col-md-1  col-xs-1 text-center">
                             <div class="alert alert-success">{{getRate(item.OutNum,item.TotalNum)}}%</div>
@@ -44,7 +44,7 @@
                         <div class="col-md-1 col-xs-1 text-center">
                             <label class="css-lable">佣金:{{goods.Brokerage*0.01}}</label>
                         </div>
-                        <div class="col-md-2 col-xs-1 text-center">开售时间{{item.EnableTime*1000 | date:'HH:mm:ss'}}</div>
+                        <div class="col-md-2 col-xs-1 text-center">开售时间{{item.EnableTime*1000 | date:'HH:mm'}}</div>
                         <div class="col-md-2  col-xs-1 text-center">
                             <button  class="btn btn-sm btn-success" ng-click="editCategory(item)">编辑分类</button>
                             <button  class="btn btn-sm btn-danger" ng-click="deleteCategory(item)">删除分类</button>
