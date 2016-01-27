@@ -1,0 +1,52 @@
+<div class="row page-title">
+    <div class="col-xs-6">
+        <h2>编辑商品分类</h2>
+    </div>
+</div>
+<div class="block-content">
+
+    <div class="modal-header">
+        <h3 class="modal-title">编辑商品分类</h3>
+    </div>
+    <div class="modal-body">
+        <form id="data" class="form-vertical">
+            <div class="content">
+                <div class="form-group">
+                    <label for="categoryName">分类名称</label>
+                    <input type="text" required class="form-control" name="categoryName" id="categoryName" placeholder="分类名称" ng-model="category.Name">
+                </div>
+                <div class="form-group">
+                    <label for="totalNum">库存</label>
+                    <input type="number" required class="form-control" name="totalNum" id="totalNum" placeholder="库存" ng-model="category.TotalNum">
+                </div>
+                <div class="form-group">
+                    <label for="Price">价格(元)</label>
+                    <input type="number" required step="0.01" class="form-control" name="Price" id="Price" placeholder="价格" ng-model="Price">
+                </div>
+                <div class="form-group">
+                    <label for="EnbaleTime">刷单要求时间</label>
+                    <input type="time"  name="EnbaleTime" id="EnbaleTime" placeholder="刷单时间" ng-model="dt">
+                </div>
+                <!--<div class="dropdown form-group">-->
+                <!--<a class="dropdown-toggle" id="dropdown2" role="button" data-toggle="dropdown" data-target="#" href="#">-->
+                <!--<div class="input-group">-->
+                <!--<input type="text" class="form-control" data-ng-model="data.dateDropDownInput"><span class="input-group-addon"><i class="fa fa-calendar"></i></span>-->
+                <!--</div>-->
+                <!--</a>-->
+                <!--<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">-->
+                <!--<datetimepicker data-ng-model="data.dateDropDownInput" data-datetimepicker-config="{ dropdownSelector: '#dropdown2' }" />-->
+                <!--</ul>-->
+                <!--</div>-->
+                <div>
+                    <label for="memo">刷单描述</label>
+                    <textarea class="form-control" required name="memo" id="memo" ng-model="category.Memo"></textarea>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="submit" ng-click="updateCategory()"  class="btn btn-primary" >提交</button>
+                <button type="button" ng-click="backToShopList()" class="btn btn-warning" >取消</button>
+            </div>
+        </form>
+    </div>
+</div>

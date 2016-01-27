@@ -33,3 +33,10 @@ func GetNewOrders()(*[]Orders,error) {
 	_,err := o.Raw(`select * from orders order by updateTime desc limit 10`).QueryRows(&orders)
 	return &orders,err
 }
+
+func GetOrderByCategoryId(id int) (* []Orders,error){
+	var orders []Orders
+	o := orm.NewOrm()
+	_,err := o.Raw(`select * from orders where categroyId = ? and state != 3`,id).QueryRows(&orders)
+	return &orders,err
+}

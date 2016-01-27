@@ -12,6 +12,10 @@ angular.module("app").controller('GoodsListCtrl', ['$rootScope','$scope','$state
         $rootScope.shop = $scope.shop;
         $state.go('main.projects.addGoods');
     }
+    $scope.gotoCategoryList = function(goods){
+        $rootScope.goods = goods;
+        $state.go('main.projects.categoryList');
+    }
 
     $scope.project = {
         loading: false,

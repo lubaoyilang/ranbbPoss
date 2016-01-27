@@ -7,7 +7,9 @@ angular.module("app").controller("GlobalCtrl", [
            if(data==undefined||data.Code < 0){
                $state.go('sessions.signin');
            }else{
-               //$state.go('sessions.signin');
+               if (data.Code == undefined){
+                   $state.go('sessions.signin');
+               }
            }
         })
         .error(function(data, status, headers, config) {

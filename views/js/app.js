@@ -89,9 +89,24 @@ app = angular.module("app", ["ngSanitize","ngAnimate","ui.router", "ui.bootstrap
     controller: 'EditGoodsController'
   })
   .state('main.projects.addGoods', {
-    url: '/editGoods',
+    url: '/addGoods',
     templateUrl: 'templates/controllers/projects/addGoods.html',
     controller: 'AddGoodsController'
+  })
+  .state('main.projects.categoryList', {
+    url: '/categoryList',
+    templateUrl: 'templates/controllers/projects/categoryList.html',
+    controller: 'CategoryListController'
+  })
+  .state('main.projects.addCategory', {
+    url: '/addCategory',
+    templateUrl: 'templates/controllers/projects/addCategory.html',
+    controller: 'AddCategoryController'
+  })
+  .state('main.projects.editCategory', {
+    url: '/editCategory',
+    templateUrl: 'templates/controllers/projects/editCategory.html',
+    controller: 'EditCategoryController'
   })
   .state('main.projects.userEssay', {
     url: '/userEssay',

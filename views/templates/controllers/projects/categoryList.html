@@ -1,0 +1,60 @@
+<div class="row page-title">
+    <div class="col-xs-12">
+        <h3>商品分类列表</h3>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-13">
+        <div class="block-content todo-list">
+            <div class="header" style="position:relative">
+                <div class="title"><i class="fa fa-tasks"></i> 分类个数 ( {{todo.size}} )</div>
+                <div class=" pull-right" style="top: 0px; margin-top: -26px;">
+                    <input type="text" placeHolder="Search" ng-model="query" class="form-control">
+                </div>
+            </div>
+            <div class="content nopadding row">
+                <div class="col-sm-13">
+                    <div class="col-md-2 col-xs-10">
+                        <button style="margin-left: 20px"  class="btn btn-sm btn-info pull-left" ng-click="addCategory()">添加商品分类</button>
+                        <!--<button  class="btn btn-sm btn-default pull-left" ng-click="deleteSelectCategorys()">删除选中分类</button>-->
+                    </div>
+                </div>
+            </div>
+
+            <div class="content nopadding">
+                <div class="task-list"  infinite-scroll="todo.scroll()">
+                    <div class="row" ng-repeat="item in todo.list  | filter : query ">
+                        <div class="col-md-2  col-xs-12">
+                            <input  type="hidden" name="checkboxG{{$index}}" id="checkboxG{{$index}}" class="css-checkbox">
+                            <label for="checkboxG{{$index}}" class="css-label"></label> {{item.Name}}
+                        </div>
+                        <div class="col-md-2  col-xs-12">
+                            <label  class="css-label"></label> {{item.Memo}}
+                        </div>
+                        <div class="col-md-1 col-xs-1 text-center">
+                            <span class="label label-info">{{item.OutNum}}/{{item.TotalNum}}</span>
+                        </div>
+                        <div class="col-md-1  col-xs-1 text-center">
+                            <div class="alert alert-success">{{getRate(item.OutNum,item.TotalNum)}}%</div>
+                        </div>
+
+                        <div class="col-md-1 col-xs-1 text-center">
+                            <label class="css-lable">价格:{{item.Price/100}}</label>
+                        </div>
+                        <div class="col-md-1 col-xs-1 text-center">
+                            <label class="css-lable">佣金:{{goods.Brokerage*0.01}}</label>
+                        </div>
+                        <div class="col-md-2 col-xs-1 text-center">开售时间{{item.EnableTime*1000 | date:'HH:mm:ss'}}</div>
+                        <div class="col-md-2  col-xs-1 text-center">
+                            <button  class="btn btn-sm btn-success" ng-click="editCategory(item)">编辑分类</button>
+                            <button  class="btn btn-sm btn-danger" ng-click="deleteCategory(item)">删除分类</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="text-center color-white" ng-show="todo.loading">
+            <h2><i class="fa fa-refresh fa-spin"></i></h2>
+        </div>
+    </div>
+</div>

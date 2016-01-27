@@ -31,6 +31,12 @@ func init() {
 	beego.Router("/ranbb/updateGoods",&controllers.GoodsController{},"post:UpdateGoods")
 	beego.Router("/ranbb/addGoods",&controllers.GoodsController{},"post:AddGoods")
 
+	beego.Router("/ranbb/getCategorys",&controllers.GoodsCategoryController{},"post:GetGoodsCategorys")
+	beego.Router("/ranbb/updateCategory",&controllers.GoodsCategoryController{},"post:UpdateGoodsCategory")
+	beego.Router("/ranbb/addCategory",&controllers.GoodsCategoryController{},"post:AddGoodsCategory")
+	beego.Router("/ranbb/deleteCategory",&controllers.GoodsCategoryController{},"post:DeleteGoodsCategory")
+	beego.Router("/ranbb/editCategory",&controllers.GoodsCategoryController{},"post:UpdateGoodsCategory")
+
 //	var FilterUser = func(ctx *context.Context) {
 //		_, ok := ctx.Input.Session("uid").(int)
 //		if !ok && ctx.Request.RequestURI != "/ranbb/admin/#/sessions/signin" {
