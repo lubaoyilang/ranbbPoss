@@ -15,7 +15,7 @@ func init() {
 	beego.Router("/ranbb/neworders", &controllers.OrderController{},"Post:GetNewOrders")
 	beego.Router("/ranbb/exportOrders",&controllers.OrderController{},"Get:ExportOrders")
 	beego.Router("/ranbb/getOrders",&controllers.OrderController{},"Post:GetOrders")
-
+	beego.Router("/ranbb/changeOrderState",&controllers.OrderController{},"Post:ChangeOrderState")
 
 	beego.Router("/ranbb/newShops",&controllers.ShopController{},"Post:GetNewShops")
 	beego.Router("/ranbb/getShopList",&controllers.ShopController{},"post:GetShopList")
@@ -38,6 +38,9 @@ func init() {
 	beego.Router("/ranbb/addCategory",&controllers.GoodsCategoryController{},"post:AddGoodsCategory")
 	beego.Router("/ranbb/deleteCategory",&controllers.GoodsCategoryController{},"post:DeleteGoodsCategory")
 	beego.Router("/ranbb/editCategory",&controllers.GoodsCategoryController{},"post:UpdateGoodsCategory")
+
+
+	beego.Router("/ranbb/getAllEnchashments",&controllers.WalletController{},"Post:GetAllEnchashments")
 
 //	var FilterUser = func(ctx *context.Context) {
 //		_, ok := ctx.Input.Session("uid").(int)

@@ -150,3 +150,45 @@ func modelToStrings(m interface{}) []string {
 	beego.Debug(values)
 	return values
 }
+
+
+func (this * OrderController)ChangeOrderState()  {
+	admin := this.checkSession()
+	if admin == nil {
+		return
+	}
+
+	orderId,err:= this.GetInt("orderId",0)
+	if err != nil {
+		beego.Debug("输入数据有误 orderId",orderId)
+		this.Data["json"] = Response{-1,"数据有误"}
+		this.ServeJson()
+		return
+	}
+	orderState,err := this.GetInt("orderState",0)
+	if err != nil {
+		beego.Debug("输入数据有误 orderState",orderState)
+		this.Data["json"] = Response{-1,"数据有误"}
+		this.ServeJson()
+		return
+	}
+
+	order,err := model.GetOrderByOrderId(orderId)
+	if err != nil {
+		beego.Debug(err.Error())
+		this.Data["json"] = Response{-1,"不存在的订单"}
+		this.ServeJson()
+		return
+	}
+	order.State = orderState
+	err = model.UpdateOrderState(order)
+	if err != nil {
+		beego.Debug(err.Error())
+		this.Data["json"] = Response{-1,"更新订单状态失败"}
+		this.ServeJson()
+		return
+	}
+	this.Data["json"] = Response{1,"更新成功"}
+	this.ServeJson()
+	return
+}

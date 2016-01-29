@@ -48,9 +48,9 @@
           </td>
           <td>{{item.Updatetime*1000 | date:'yyyy-MM-dd HH:mm:ss'}}</td>
           <td>
-                <button ng-show="item.State == '1'" class="btn btn-sm btn-success" ng-click="toast.create('Task Done! Success.','success')">审核通过</button>
-                <button ng-show="item.State == '1'" class="btn btn-sm btn-danger" ng-click="toast.create('Task Done! Success.','success')">审核失败</button>
-                <button ng-show="item.State == '2'" class="btn btn-sm btn-warning" ng-click="toast.create('Task Done! Success.','success')">取消审核</button>
+                <button ng-show="item.State == '1'" class="btn btn-sm btn-success" ng-click="changeOrderState(item,2)">审核通过</button>
+                <button ng-show="item.State == '1'" class="btn btn-sm btn-danger" ng-click="changeOrderState(item,3)">审核失败</button>
+                <button ng-show="item.State == '2'" class="btn btn-sm btn-warning" ng-click="changeOrderState(item,1)">取消审核</button>
           </td>
         </tr>
       </tbody>

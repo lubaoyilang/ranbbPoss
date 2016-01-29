@@ -3,6 +3,37 @@ angular.module("app").controller('OrderListController', ['$scope','$modal','$tim
 
     $scope.searchText = "";
 
+    $scope.changeOrderState = function(order,state){
+        $http({method: 'POST',
+            url: '/ranbb/changeOrderState',
+            params:{orderId:order.Orderid,orderState:state}
+        })
+            .success(function(data, status, headers, config) {
+                console.log(data);
+                if(data.Code > 0&& data.Data != null){
+                    order.State = state
+                    ngToast.create({
+                        content: data.Data,
+                        className: 'info',
+                        dismissButton: true
+                    });
+                }else{
+                    ngToast.create({
+                        content: data.Data,
+                        className: 'warning',
+                        dismissButton: true
+                    });
+                }
+            })
+            .error(function(data, status, headers, config) {
+                ngToast.create({
+                    content: "访问失败",
+                    className: 'warning',
+                    dismissButton: true
+                });
+            });
+    }
+
     $scope.todo = {
         loading: false,
         page:1,

@@ -1,5 +1,8 @@
 package model
-import "github.com/astaxie/beego/orm"
+import (
+	"github.com/astaxie/beego/orm"
+	"fmt"
+)
 
 type Orders struct {
 	Orderid       int    `orm:"column(orderId);pk;auto;unique;size(11)"`
@@ -56,6 +59,26 @@ func GetOrderByCategoryId(id int) (* []Orders,error){
 	_,err := o.Raw(`select * from orders where categroyId = ? and state != 3`,id).QueryRows(&orders)
 	return &orders,err
 }
+
+func GetOrderByOrderId(id int) (* Orders,error) {
+	o := orm.NewOrm()
+	v := Orders{Orderid: id}
+	err := o.Read(&v);
+	return &v,err
+}
+func UpdateOrderState(order *Orders) (err error) {
+	o := orm.NewOrm()
+	v := Orders{Orderid: order.Orderid}
+	// ascertain id exists in the database
+	if err = o.Read(&v); err == nil {
+		var num int64
+		if num, err = o.Update(order); err == nil {
+			fmt.Println("Number of records updated in database:", num)
+		}
+	}
+	return
+}
+
 
 func GetOrdersByGoodsId(goodsId ,state int)(*[]ExportOrders,error)  {
 	var orders []ExportOrders
