@@ -55,10 +55,10 @@
                                     <label  class="css-label"></label> 用户ID:{{item.Uid}}
                                 </div>
                                 <div class="col-md-1 col-xs-1 text-center">
-                                    <span class="label label-info">价格:{{item.Price}}</span>
+                                    <span class="label label-info">价格:{{item.Price*0.01}}</span>
                                 </div>
                                 <div class="col-md-1  col-xs-1 text-center">
-                                    <div class="alert alert-success">佣金:{{item.Brokerage}}</div>
+                                    <div class="alert alert-success">佣金:{{item.Brokerage*0.01}}</div>
                                 </div>
                                 <div class="col-md-1 col-xs-1 text-center">
                                     <span class="label label-success" ng-show="item.State == '2'">刷单成功</span>

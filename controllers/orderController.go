@@ -188,7 +188,71 @@ func (this * OrderController)ChangeOrderState()  {
 		this.ServeJson()
 		return
 	}
+
+	if orderState == 2 {
+		err = changeAmount(order.Price,order.Brokerage,order.Uid)
+		if err != nil {
+			this.Data["json"] = Response{-1,"更新订单状态失败"}
+			this.ServeJson()
+			return
+		}
+	}
 	this.Data["json"] = Response{1,"更新成功"}
 	this.ServeJson()
 	return
+}
+
+//审核通过 本金增加 佣金增加 总金额增加 log 增加 减少审核中金额
+
+func changeAmount(price,income int64,UID string) error {
+	user,err := model.GetUserById(UID)
+	if err != nil {
+		return err
+	}
+	user.Asset += price
+	user.Income += income
+	user.VerifyAmount -= price
+	user.Total += income
+	err = model.UpdateUser(user)
+	if err != nil {
+		return err
+	}
+	log := model.WalletLog{
+		Price:price,
+		Uid:UID,
+		NowValue:user.Asset,
+		Createtime:time.Now().Unix(),
+		Categroy:0,
+		Memo:"本金返还",
+	}
+	err = model.AddLog(&log);
+	if err != nil {
+		return err
+	}
+	log = model.WalletLog{
+		Price:income,
+		Uid:UID,
+		NowValue:user.Income,
+		Createtime:time.Now().Unix(),
+		Categroy:3,
+		Memo:"佣金增加",
+	}
+	err = model.AddLog(&log);
+	if err != nil {
+		return err
+	}
+
+	log = model.WalletLog{
+		Price:0-income,
+		Uid:UID,
+		NowValue:user.VerifyAmount,
+		Createtime:time.Now().Unix(),
+		Categroy:4,
+		Memo:"审核中金额转入本金",
+	}
+	err = model.AddLog(&log);
+	if err != nil {
+		return err
+	}
+	return nil
 }

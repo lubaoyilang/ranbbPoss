@@ -62,7 +62,7 @@ func (this * GoodsCategoryController)AddGoodsCategory() {
 		this.Data["json"] = Response{-1,"输入信息有误"}
 		this.ServeJson()
 	}
-
+	category.LimitPurchaseQuantity = 1;
 	_,err = model.AddCategory(&category)
 	if err != nil {
 		beego.Error(err.Error())

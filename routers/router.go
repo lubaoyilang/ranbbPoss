@@ -8,6 +8,7 @@ import (
 
 func init() {
 //    beego.Router("/ranbb/admin", &controllers.MainController{})
+	beego.Router("/",&controllers.MainController{})
 	beego.Router("/ranbb/checkSession",&controllers.MainController{},"Post:CheckSession")
 	beego.Router("/ranbb/login",&controllers.MainController{},"Post:Login")
 	beego.Router("/ranbb/logout",&controllers.MainController{},"post:Logout")
@@ -41,6 +42,8 @@ func init() {
 
 
 	beego.Router("/ranbb/getAllEnchashments",&controllers.WalletController{},"Post:GetAllEnchashments")
+	beego.Router("/ranbb/enchash",&controllers.WalletController{},"post:Enchash")
+	beego.Router("/ranbb/canNotEnchash",&controllers.WalletController{},"post:CanNotEnchash")
 
 //	var FilterUser = func(ctx *context.Context) {
 //		_, ok := ctx.Input.Session("uid").(int)

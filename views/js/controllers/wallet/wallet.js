@@ -3,6 +3,68 @@
  */
 angular.module("app").controller('WalletController', ['$scope','$modal','$timeout','$state','$http','ngToast','$rootScope',function($scope,$modal,$timeout,$state,$http,ngToast,$rootScope) {
 
+    $scope.enchash = function(enchashment){
+        $http({method: 'POST',
+            url: '/ranbb/enchash',
+            params:{enchashId:enchashment.Id}
+        })
+            .success(function(data, status, headers, config) {
+                console.log(data);
+                if(data.Code > 0&& data.Data != null){
+                    ngToast.create({
+                        content: data.Data,
+                        className: 'warning',
+                        dismissButton: true
+                    });
+                    enchashment.State = 1;
+                }else{
+                    ngToast.create({
+                        content: data.Data,
+                        className: 'warning',
+                        dismissButton: true
+                    });
+                }
+                $scope.todo.loading = false;
+            })
+            .error(function(data, status, headers, config) {
+                ngToast.create({
+                    content: "加载失败",
+                    className: 'warning',
+                    dismissButton: true
+                });
+            });
+    }
+    $scope.cannotchash = function(enchashment){
+        $http({method: 'POST',
+            url: '/ranbb/canNotEnchash',
+            params:{enchashId:enchashment.Id}
+        })
+            .success(function(data, status, headers, config) {
+                console.log(data);
+                if(data.Code > 0&& data.Data != null){
+                    ngToast.create({
+                        content: data.Data,
+                        className: 'warning',
+                        dismissButton: true
+                    });
+                    enchashment.State = 1;
+                }else{
+                    ngToast.create({
+                        content: data.Data,
+                        className: 'warning',
+                        dismissButton: true
+                    });
+                }
+                $scope.todo.loading = false;
+            })
+            .error(function(data, status, headers, config) {
+                ngToast.create({
+                    content: "加载失败",
+                    className: 'warning',
+                    dismissButton: true
+                });
+            });
+    }
     $scope.todo = {
         loading: false,
         page:1,
@@ -11,8 +73,8 @@ angular.module("app").controller('WalletController', ['$scope','$modal','$timeou
             if (!$scope.todo.loading) {
                 $scope.todo.loading = true;
                 $http({method: 'POST',
-                    url: '/ranbb/getOrders',
-                    params:{goodsId:$scope.goods.Goodid,page:$scope.todo.page}
+                    url: '/ranbb/getAllEnchashments',
+                    params:{page:$scope.todo.page}
                 })
                     .success(function(data, status, headers, config) {
                         console.log(data);
@@ -39,7 +101,7 @@ angular.module("app").controller('WalletController', ['$scope','$modal','$timeou
                     });
             }
         },
-        list: [{},{}]
+        list: []
     };
 
 }]);
